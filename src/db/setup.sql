@@ -1,7 +1,7 @@
 /*
- * script.sql
+ * setup.sql
  */
- 
+
 -- DROP DATABASE IF EXISTS CountryClub;
 CREATE DATABASE IF NOT EXISTS CountryClub;
 USE CountryClub;
@@ -16,7 +16,7 @@ USE CountryClub;
 CREATE TABLE IF NOT EXISTS User (
     Username VARCHAR(64) NOT NULL PRIMARY KEY,
     PasswordHash VARCHAR(32) NOT NULL,
-    IsAdmin BOOLEAN NOT NULL, -- Use BIT for SQL Server
+    IsAdmin BOOLEAN NOT NULL -- Use BIT for SQL Server
 
     -- CONSTRAINT USER_PK PRIMARY KEY (Username)
 );
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS Membership (
 
 /*** Manager */
 CREATE TABLE IF NOT EXISTS Manager (
-    ManagerId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    ManagerId INT AUTO_INCREMENT PRIMARY KEY,
     FName VARCHAR(32) NOT NULL,
     LName VARCHAR(32) NOT NULL,
     MName VARCHAR(32),
@@ -42,15 +42,15 @@ CREATE TABLE IF NOT EXISTS Manager (
     Address VARCHAR(512),
     DateJoined DATE NOT NULL,
     Title VARCHAR(32) NOT NULL,
-    Username VARCHAR(64) NOT NULL, -- FK User.Username
-    ManagerId INT, -- FK Manager.ManagerId
+    Username VARCHAR(64), -- FK User.Username
+    SuperManagerId INT, -- FK Manager.ManagerId
 
     -- CONSTRAINT MANAGER_PK PRIMARY KEY (ManagerId),
     CONSTRAINT MANAGER_FK1 FOREIGN KEY (Username)
         REFERENCES User (Username)
         ON UPDATE CASCADE
         ON DELETE SET NULL,
-    CONSTRAINT MANAGER_FK2 FOREIGN KEY (ManagerId)
+    CONSTRAINT MANAGER_FK2 FOREIGN KEY (SuperManagerId)
         REFERENCES Manager (ManagerId)
         ON UPDATE CASCADE
         ON DELETE SET NULL
@@ -68,8 +68,8 @@ CREATE TABLE IF NOT EXISTS Employee (
     Address VARCHAR(512),
     DateJoined DATE NOT NULL,
     Title VARCHAR(32) NOT NULL,
-    Username VARCHAR(64) NOT NULL, -- FK User.Username
-    ManagerId INT NOT NULL, -- FK Manager.ManagerId
+    Username VARCHAR(64), -- FK User.Username
+    ManagerId INT, -- FK Manager.ManagerId
 
     -- CONSTRAINT EMPLOYEE_PK PRIMARY KEY (EmployeeId),
     CONSTRAINT EMPLOYEE_FK1 FOREIGN KEY (Username)
@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS Customer (
     DateJoined DATE NOT NULL,
     MembershipId INT, -- FK Membership.MembershipId
     MemberSince DATE,
-    Username VARCHAR(64) NOT NULL, -- FK User.Username
+    Username VARCHAR(64), -- FK User.Username
 
     -- CONSTRAINT CUSTOMER_PK PRIMARY KEY (CustomerId),
     CONSTRAINT CUSTOMER_FK1 FOREIGN KEY (MembershipId)
@@ -128,11 +128,11 @@ CREATE TABLE IF NOT EXISTS TimeSlot (
     CONSTRAINT TIME_SLOT_FK1 FOREIGN KEY (StartTime)
         REFERENCES Time_ (TimeId)
         ON UPDATE CASCADE
-        ON DELETE SET NULL,
+        ON DELETE CASCADE,
     CONSTRAINT TIME_SLOT_FK2 FOREIGN KEY (EndTime)
         REFERENCES Time_ (TimeId)
         ON UPDATE CASCADE
-        ON DELETE SET NULL
+        ON DELETE CASCADE
 ) AUTO_INCREMENT = 0;
 
 --
@@ -150,10 +150,10 @@ CREATE TABLE IF NOT EXISTS Course (
 /*** CourseBooking */
 CREATE TABLE IF NOT EXISTS CourseBooking (
     BookingId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    CustomerId INT NOT NULL, -- FK Customer.CustomerId
-    BookedDate DATE NOT NULL,
-    BookedTimeSlot INT NOT NULL, -- FK TimeSlot.TimeSlotId
-    CourseId INT NOT NULL, -- FK Course.CourseId
+    CustomerId INT, -- FK Customer.CustomerId
+    BookedDate DATE,
+    BookedTimeSlot INT, -- FK TimeSlot.TimeSlotId
+    CourseId INT, -- FK Course.CourseId
     Notes VARCHAR(512),
 
     CONSTRAINT COURSE_BOOKING_FK1 FOREIGN KEY(CustomerId)
@@ -163,7 +163,7 @@ CREATE TABLE IF NOT EXISTS CourseBooking (
     CONSTRAINT COURSE_BOOKING_FK2 FOREIGN KEY (BookedTimeSlot)
         REFERENCES TimeSlot (TimeSlotId)
         ON UPDATE CASCADE
-        ON DELETE SET NULL
+        ON DELETE SET NULL,
     CONSTRAINT COURSE_BOOKING_FK3 FOREIGN KEY (CourseId)
         REFERENCES Course (CourseId)
         ON UPDATE CASCADE
@@ -183,19 +183,19 @@ CREATE TABLE IF NOT EXISTS CourseCheckIn (
     CONSTRAINT COURSE_CHECK_IN_FK1 FOREIGN KEY (CustomerId)
         REFERENCES Customer (CustomerId)
         ON UPDATE CASCADE
-        ON DELETE SET NULL,
+        ON DELETE CASCADE,
     CONSTRAINT COURSE_CHECK_IN_FK2 FOREIGN KEY (CheckInTime)
         REFERENCES Time_ (TimeId)
         ON UPDATE CASCADE
-        ON DELETE SET NULL,
+        ON DELETE CASCADE,
     CONSTRAINT COURSE_CHECK_IN_FK3 FOREIGN KEY (BookingId)
         REFERENCES CourseBooking (BookingId)
         ON UPDATE CASCADE
-        ON DELETE SET NULL,
+        ON DELETE CASCADE,
     CONSTRAINT COURSE_CHECK_IN_FK4 FOREIGN KEY (EmployeeId)
         REFERENCES Employee (EmployeeId)
         ON UPDATE CASCADE
-        ON DELETE SET NULL
+        ON DELETE CASCADE
 );
 
 -- 
@@ -209,14 +209,14 @@ CREATE TABLE IF NOT EXISTS RestaurantBooking (
     BookingId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     CustomerId INT NOT NULL, -- FK Customer.CustomerId
     BookedDate DATE NOT NULL,
-    BookedTime INT NOT NULL, -- FK Time_.TimeId
+    BookedTime INT, -- FK Time_.TimeId
     NumGuests INT,
     Notes VARCHAR(512),
 
     CONSTRAINT RESTAURANT_BOOKING_FK1 FOREIGN KEY(CustomerId)
         REFERENCES Customer (CustomerId)
         ON UPDATE CASCADE
-        ON DELETE SET NULL,
+        ON DELETE CASCADE,
     CONSTRAINT RESTAURANT_BOOKING_FK2 FOREIGN KEY (BookedTime)
         REFERENCES Time_ (TimeId)
         ON UPDATE CASCADE
@@ -227,28 +227,28 @@ CREATE TABLE IF NOT EXISTS RestaurantBooking (
 CREATE TABLE IF NOT EXISTS RestaurantCheckIn (
     CustomerId INT NOT NULL, -- FK Customer.CustomerId
     CheckInDate DATE NOT NULL,
-    CheckInTime INT NOT NULL, -- FK Time_.TimeId
+    CheckInTime INT, -- FK Time_.TimeId
     BookingId INT NOT NULL, -- FK RestaurantBooking.BookingId
-    EmployeeId INT NOT NULL, -- FK Employee.EmployeeId
+    EmployeeId INT, -- FK Employee.EmployeeId
     Notes VARCHAR(512),
 
     CONSTRAINT RESTAURANT_CHECK_IN_PK PRIMARY KEY (CustomerId, CheckInDate, CheckInTime, BookingId),
     CONSTRAINT RESTAURANT_CHECK_IN_FK1 FOREIGN KEY (CustomerId)
         REFERENCES Customer (CustomerId)
         ON UPDATE CASCADE
-        ON DELETE SET NULL,
+        ON DELETE CASCADE,
     CONSTRAINT RESTAURANT_CHECK_IN_FK2 FOREIGN KEY (CheckInTime)
         REFERENCES Time_ (TimeId)
         ON UPDATE CASCADE
-        ON DELETE SET NULL,
+        ON DELETE CASCADE,
     CONSTRAINT RESTAURANT_CHECK_IN_FK3 FOREIGN KEY (BookingId)
         REFERENCES RestaurantBooking (BookingId)
         ON UPDATE CASCADE
-        ON DELETE SET NULL,
+        ON DELETE CASCADE,
     CONSTRAINT RESTAURANT_CHECK_IN_FK4 FOREIGN KEY (EmployeeId)
         REFERENCES Employee (EmployeeId)
         ON UPDATE CASCADE
-        ON DELETE SET NULL
+        ON DELETE NO ACTION
 );
 
 /*** Product */
@@ -264,20 +264,20 @@ CREATE TABLE IF NOT EXISTS Product (
 CREATE TABLE IF NOT EXISTS FoodOrder (
     OrderId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     CustomerId INT NOT NULL, -- FK Customer.CustomerId
-    EmployeeId INT NOT NULL, -- FK Employee.EmployeeId
+    EmployeeId INT, -- FK Employee.EmployeeId
     DateOrdered DATE NOT NULL,
-    TimeOrdered INT NOT NULL, -- FK Time_.TimeId
+    TimeOrdered INT, -- FK Time_.TimeId
     Notes VARCHAR(512),
 
     CONSTRAINT FOOD_ORDER_FK1 FOREIGN KEY (CustomerId)
         REFERENCES Customer (CustomerId)
         ON UPDATE CASCADE
-        ON DELETE SET NULL,
+        ON DELETE CASCADE,
     CONSTRAINT FOOD_ORDER_FK2 FOREIGN KEY (EmployeeId)
         REFERENCES Employee (EmployeeId)
         ON UPDATE CASCADE
         ON DELETE SET NULL,
-    CONSTRAINT FOOD_ORDER_FK3 FOREIGN KEY (TimeId)
+    CONSTRAINT FOOD_ORDER_FK3 FOREIGN KEY (TimeOrdered)
         REFERENCES Time_ (TimeId)
         ON UPDATE CASCADE
         ON DELETE SET NULL
@@ -286,7 +286,7 @@ CREATE TABLE IF NOT EXISTS FoodOrder (
 /*** FoodOrderItem */
 CREATE TABLE IF NOT EXISTS FoodOrderItem (
     OrderId INT NOT NULL, -- FK FoodOder.OrderId
-    ProductId INT NOT NULL, -- FK Product.ProductId
+    ProductId INT, -- FK Product.ProductId
     Quantity INT NOT NULL,
     Price FLOAT NOT NULL,
     Notes VARCHAR(512),
@@ -295,9 +295,9 @@ CREATE TABLE IF NOT EXISTS FoodOrderItem (
     CONSTRAINT FOOD_ORDER_ITEM_FK1 FOREIGN KEY (OrderId)
         REFERENCES FoodOrder (OrderId)
         ON UPDATE CASCADE
-        ON DELETE SET NULL,
+        ON DELETE CASCADE,
     CONSTRAINT FOOD_ORDER_ITEM_FK2 FOREIGN KEY (ProductId)
         REFERENCES Product (ProductId)
         ON UPDATE CASCADE
-        ON DELETE SET NULL
+        ON DELETE CASCADE
 );

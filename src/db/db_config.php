@@ -4,11 +4,17 @@ $username = "root";
 $password = "root";
 $dbname = "CountryClub";
 $setup_script = file_get_contents("setup.sql");
+// println("$setup_script");
 
 db_init();
 $db = db_connect();
 
-println("$setup_script");
+// Running setup script
+try {
+    $db->exec($setup_script);
+} catch(PDOException $e) {
+    println("Error while running setup script: $e");
+}
 
 function db_init() {
     global $server_url, $username, $password, $dbname;
@@ -43,8 +49,6 @@ function db_connect() {
     }
 }
 
-function println($line) {
-    print "$line" . "<br>";
-}
+function println($line) { print "$line<br>"; }
 
 ?>
