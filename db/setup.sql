@@ -2,7 +2,7 @@
  * setup.sql
  */
 
--- DROP DATABASE IF EXISTS CountryClub;
+DROP DATABASE IF EXISTS CountryClub; -- Resets database after each run for testing
 CREATE DATABASE IF NOT EXISTS CountryClub;
 USE CountryClub;
 
@@ -42,14 +42,14 @@ CREATE TABLE IF NOT EXISTS Manager (
     Address VARCHAR(512),
     DateJoined DATE NOT NULL,
     Title VARCHAR(32) NOT NULL,
-    Username VARCHAR(64), -- FK User.Username
+    Username VARCHAR(64) NOT NULL, -- FK User.Username
     SuperManagerId INT, -- FK Manager.ManagerId
 
     -- CONSTRAINT MANAGER_PK PRIMARY KEY (ManagerId),
     CONSTRAINT MANAGER_FK1 FOREIGN KEY (Username)
         REFERENCES User (Username)
         ON UPDATE CASCADE
-        ON DELETE SET NULL,
+        ON DELETE CASCADE,
     CONSTRAINT MANAGER_FK2 FOREIGN KEY (SuperManagerId)
         REFERENCES Manager (ManagerId)
         ON UPDATE CASCADE
