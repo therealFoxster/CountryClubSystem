@@ -16,11 +16,11 @@ USE CountryClub;
 CREATE TABLE IF NOT EXISTS User (
     Username VARCHAR(64) NOT NULL PRIMARY KEY,
     PasswordHash VARCHAR(32) NOT NULL,
-    IsAdmin BOOLEAN NOT NULL -- Use BIT for SQL Server
+    AdminPrivilege INT NOT NULL -- 0 = none, 1 = moderate and 2 = full
 
     -- CONSTRAINT USER_PK PRIMARY KEY (Username)
 );
-INSERT IGNORE INTO User VALUES ("admin", "21232f297a57a5a743894a0e4a801fc3", TRUE); -- "admin" MD5 hash: 21232f297a57a5a743894a0e4a801fc3
+INSERT IGNORE INTO User VALUES ("admin", "21232f297a57a5a743894a0e4a801fc3", 2); -- "admin" MD5 hash: 21232f297a57a5a743894a0e4a801fc3
 
 /*** Membership */
 CREATE TABLE IF NOT EXISTS Membership (

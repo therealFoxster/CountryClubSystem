@@ -1,10 +1,15 @@
 <?php
+date_default_timezone_set("America/Vancouver");
 $server_url = "localhost:8889";
 $username = "root";
 $password = "root";
 $dbname = "CountryClub";
-$setup_script = file_get_contents("setup.sql");
-$date = date("[M j, o][G:i:s]");
+$setup_script = file_get_contents("config/setup.sql");
+$date = date("[M j, o][G:i:s]"); 
+$err_log = "./logs/err.log";
+$this_file = basename(__FILE__, ".php") . ".php";
+
+error_log("\n", 3, $err_log);
 
 db_init();
 $db = db_connect();
@@ -14,11 +19,11 @@ try {
     $db->exec($setup_script);
 } catch(PDOException $e) {
     // println("Error while running setup script: $e");
-    err_log("Error while running setup script: $e", "db_config.php");
+    err_log("Error while running setup script: $e", $this_file);
 }
 
 function db_init() {
-    global $server_url, $username, $password, $dbname;
+    global $server_url, $username, $password, $dbname, $this_file;
     
     // println("Connecting to server at $server_url...");
     $connection = new mysqli($server_url, $username, $password);
@@ -33,12 +38,12 @@ function db_init() {
     } else {
         // println("Database '$dbname' was not created: " . $connection->error); 
         global $date;
-        err_log("Database '$dbname' was not created: $connection->error", "db_init() in db_config.php");
+        err_log("Database '$dbname' was not created: $connection->error", "db_init() in $this_file");
     } 
 }
 
 function db_connect() {
-    global $server_url, $username, $password, $dbname;
+    global $server_url, $username, $password, $dbname, $this_file;
     
     try {
         // println("Connecting to database '$dbname'...");
@@ -51,13 +56,13 @@ function db_connect() {
         return $db;
     } catch (PDOException $e) {
         // println("Unable to connect to database '$dbname': " . $e->getMessage());
-        err_log("Unable to connect to database '$dbname': $e->getMessage()", "db_connect() in db_config.php");
+        err_log("Unable to connect to database '$dbname': $e->getMessage()", "db_connect() in $this_file");
     }
 }
 
 function err_log($message, $source = "unknown") {
-    global $date;
-    error_log("$date $source: $message \n", 3, "err.log");
+    global $date, $err_log;
+    error_log("$date $source: $message \n", 3, $err_log);
 }
 
 function println($line) { print "$line<br>"; }
