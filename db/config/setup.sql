@@ -84,12 +84,12 @@ CREATE TABLE IF NOT EXISTS Employee (
 
 /*** Customer */
 CREATE TABLE IF NOT EXISTS Customer (
-    CustomerId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    -- CustomerId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Email VARCHAR(64) NOT NULL PRIMARY KEY,
     FName VARCHAR(32) NOT NULL,
     LName VARCHAR(32) NOT NULL,
     MName VARCHAR(32),
-    DOB DATE NOT NULL,
-    Email VARCHAR(64) NOT NULL,
+    DOB DATE,
     PhoneNumber INT,
     Address VARCHAR(512),
     DateJoined DATE NOT NULL,
@@ -150,14 +150,14 @@ CREATE TABLE IF NOT EXISTS Course (
 /*** CourseBooking */
 CREATE TABLE IF NOT EXISTS CourseBooking (
     BookingId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    CustomerId INT, -- FK Customer.CustomerId
+    CustomerEmail VARCHAR(64), -- FK Customer.Email
     BookedDate DATE,
     BookedTimeSlot INT, -- FK TimeSlot.TimeSlotId
     CourseId INT, -- FK Course.CourseId
     Notes VARCHAR(512),
 
-    CONSTRAINT COURSE_BOOKING_FK1 FOREIGN KEY(CustomerId)
-        REFERENCES Customer (CustomerId)
+    CONSTRAINT COURSE_BOOKING_FK1 FOREIGN KEY(CustomerEmail)
+        REFERENCES Customer (Email)
         ON UPDATE CASCADE
         ON DELETE SET NULL,
     CONSTRAINT COURSE_BOOKING_FK2 FOREIGN KEY (BookedTimeSlot)
@@ -172,16 +172,16 @@ CREATE TABLE IF NOT EXISTS CourseBooking (
 
 /*** CourseCheckIn */
 CREATE TABLE IF NOT EXISTS CourseCheckIn (
-    CustomerId INT NOT NULL, -- FK Customer.CustomerId
+    CustomerEmail VARCHAR(64) NOT NULL, -- FK Customer.Email
     CheckInDate DATE NOT NULL,
     CheckInTime INT NOT NULL, -- FK Time_.TimeId
     BookingId INT NOT NULL, -- FK CourseBooking.BookingId
     EmployeeId INT NOT NULL, -- FK Employee.EmployeeId
     Notes VARCHAR(512),
 
-    CONSTRAINT COURSE_CHECK_IN_PK PRIMARY KEY (CustomerId, CheckInDate, CheckInTime, BookingId),
-    CONSTRAINT COURSE_CHECK_IN_FK1 FOREIGN KEY (CustomerId)
-        REFERENCES Customer (CustomerId)
+    CONSTRAINT COURSE_CHECK_IN_PK PRIMARY KEY (CustomerEmail, CheckInDate, CheckInTime, BookingId),
+    CONSTRAINT COURSE_CHECK_IN_FK1 FOREIGN KEY (CustomerEmail)
+        REFERENCES Customer (Email)
         ON UPDATE CASCADE
         ON DELETE CASCADE,
     CONSTRAINT COURSE_CHECK_IN_FK2 FOREIGN KEY (CheckInTime)
@@ -207,14 +207,14 @@ CREATE TABLE IF NOT EXISTS CourseCheckIn (
 /*** RestaurantBooking */
 CREATE TABLE IF NOT EXISTS RestaurantBooking (
     BookingId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    CustomerId INT NOT NULL, -- FK Customer.CustomerId
+    CustomerEmail VARCHAR(64) NOT NULL, -- FK Customer.Email
     BookedDate DATE NOT NULL,
     BookedTime INT, -- FK Time_.TimeId
     NumGuests INT,
     Notes VARCHAR(512),
 
-    CONSTRAINT RESTAURANT_BOOKING_FK1 FOREIGN KEY(CustomerId)
-        REFERENCES Customer (CustomerId)
+    CONSTRAINT RESTAURANT_BOOKING_FK1 FOREIGN KEY(CustomerEmail)
+        REFERENCES Customer (Email)
         ON UPDATE CASCADE
         ON DELETE CASCADE,
     CONSTRAINT RESTAURANT_BOOKING_FK2 FOREIGN KEY (BookedTime)
@@ -225,16 +225,16 @@ CREATE TABLE IF NOT EXISTS RestaurantBooking (
 
 /*** RestaurantCheckIn */
 CREATE TABLE IF NOT EXISTS RestaurantCheckIn (
-    CustomerId INT NOT NULL, -- FK Customer.CustomerId
+    CustomerEmail VARCHAR(64) NOT NULL, -- FK Customer.Email
     CheckInDate DATE NOT NULL,
     CheckInTime INT, -- FK Time_.TimeId
     BookingId INT NOT NULL, -- FK RestaurantBooking.BookingId
     EmployeeId INT, -- FK Employee.EmployeeId
     Notes VARCHAR(512),
 
-    CONSTRAINT RESTAURANT_CHECK_IN_PK PRIMARY KEY (CustomerId, CheckInDate, CheckInTime, BookingId),
-    CONSTRAINT RESTAURANT_CHECK_IN_FK1 FOREIGN KEY (CustomerId)
-        REFERENCES Customer (CustomerId)
+    CONSTRAINT RESTAURANT_CHECK_IN_PK PRIMARY KEY (CustomerEmail, CheckInDate, CheckInTime, BookingId),
+    CONSTRAINT RESTAURANT_CHECK_IN_FK1 FOREIGN KEY (CustomerEmail)
+        REFERENCES Customer (Email)
         ON UPDATE CASCADE
         ON DELETE CASCADE,
     CONSTRAINT RESTAURANT_CHECK_IN_FK2 FOREIGN KEY (CheckInTime)
@@ -263,14 +263,14 @@ CREATE TABLE IF NOT EXISTS Product (
 /*** FoodOrder */
 CREATE TABLE IF NOT EXISTS FoodOrder (
     OrderId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    CustomerId INT NOT NULL, -- FK Customer.CustomerId
+    CustomerEmail VARCHAR(64) NOT NULL, -- FK Customer.Email
     EmployeeId INT, -- FK Employee.EmployeeId
     DateOrdered DATE NOT NULL,
     TimeOrdered INT, -- FK Time_.TimeId
     Notes VARCHAR(512),
 
-    CONSTRAINT FOOD_ORDER_FK1 FOREIGN KEY (CustomerId)
-        REFERENCES Customer (CustomerId)
+    CONSTRAINT FOOD_ORDER_FK1 FOREIGN KEY (CustomerEmail)
+        REFERENCES Customer (Email)
         ON UPDATE CASCADE
         ON DELETE CASCADE,
     CONSTRAINT FOOD_ORDER_FK2 FOREIGN KEY (EmployeeId)

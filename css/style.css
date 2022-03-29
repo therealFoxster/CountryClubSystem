@@ -103,9 +103,9 @@ label {
       rgba(0, 0, 0, 0.2),
       rgba(0, 0, 0, 0.2)
     ),
-    url("images/header.jpg");
+    url("../images/header.jpg");
   background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    url("images/header.jpg");
+    url("../images/header.jpg");
   position: relative;
   text-align: center;
   color: white;

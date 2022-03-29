@@ -1,91 +1,24 @@
 
-[Mar 23, 2022][20:01:23] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
-[Mar 23, 2022][20:01:23] unknown: Unable to insert data to table 'Manager': SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1 
+[Mar 28, 2022][19:32:43] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
 
-[Mar 23, 2022][20:02:23] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
-[Mar 23, 2022][20:02:23] unknown: Unable to insert data to table 'Manager': SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1 
+[Mar 28, 2022][19:33:09] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
 
-[Mar 23, 2022][20:04:07] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
-[Mar 23, 2022][20:04:07] unknown: Unable to insert data to table 'Manager': SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1 
+[Mar 28, 2022][19:33:19] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
 
-[Mar 23, 2022][20:04:35] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
-[Mar 23, 2022][20:04:35] unknown: Unable to insert data to table 'Manager': SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1 
+[Mar 28, 2022][19:37:41] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
 
-[Mar 23, 2022][20:04:46] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
-[Mar 23, 2022][20:04:46] unknown: Unable to insert data to table 'Manager': SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1 
+[Mar 28, 2022][19:38:42] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
 
-[Mar 23, 2022][20:08:48] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
+[Mar 28, 2022][19:40:44] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
 
-[Mar 23, 2022][20:10:56] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
-[Mar 23, 2022][20:10:56] unknown: Unable to insert data to table 'Manager': SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1 
+[Mar 28, 2022][19:41:01] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
 
-[Mar 23, 2022][20:12:35] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
+[Mar 28, 2022][19:42:18] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
 
-[Mar 23, 2022][20:12:41] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
+[Mar 28, 2022][20:15:18] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
 
-[Mar 23, 2022][20:12:45] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
+[Mar 28, 2022][20:18:16] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
 
-[Mar 23, 2022][20:12:48] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
+[Mar 28, 2022][20:30:11] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
 
-[Mar 23, 2022][20:13:46] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
-
-[Mar 23, 2022][20:15:06] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
-
-[Mar 23, 2022][20:15:29] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
-[Mar 23, 2022][20:15:29] unknown: Unable to insert data to table 'Manager': SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1 
-
-[Mar 23, 2022][20:15:39] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
-[Mar 23, 2022][20:15:39] unknown: Unable to insert data to table 'Manager': SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1 
-
-[Mar 23, 2022][20:19:25] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
-[Mar 23, 2022][20:19:25] unknown: Unable to insert data to table 'Manager': SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1 
-
-[Mar 23, 2022][20:19:35] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
-[Mar 23, 2022][20:19:35] unknown: Unable to insert data to table 'Manager': SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1 
-
-[Mar 23, 2022][20:19:59] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
-[Mar 23, 2022][20:19:59] unknown: Unable to insert data to table 'Manager': SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1 
-
-[Mar 23, 2022][20:20:01] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
-
-[Mar 23, 2022][20:20:33] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
-
-[Mar 23, 2022][20:23:31] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
-
-[Mar 23, 2022][20:23:46] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
-
-[Mar 23, 2022][20:23:49] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
-
-[Mar 23, 2022][20:27:02] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
-[Mar 23, 2022][20:27:02] unknown: Unable to insert data to table 'Manager': SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1 
-
-[Mar 23, 2022][20:27:24] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
-
-[Mar 23, 2022][20:31:59] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
-
-[Mar 23, 2022][20:32:13] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
-[Mar 23, 2022][20:32:13] unknown: Unable to insert data to table 'Manager': SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect date value: '1994' for column 'DOB' at row 1 
-
-[Mar 23, 2022][20:33:49] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
-[Mar 23, 2022][20:33:49] unknown: Unable to insert data to table 'Manager': SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect date value: '1994' for column 'DOB' at row 1 
-
-[Mar 23, 2022][20:34:10] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
-[Mar 23, 2022][20:34:10] unknown: Unable to insert data to table 'Manager': SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect date value: '12-15-2021' for column 'DOB' at row 1 
-
-[Mar 23, 2022][20:34:40] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
-
-[Mar 23, 2022][20:35:08] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
-
-[Mar 23, 2022][20:37:24] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
-
-[Mar 23, 2022][21:05:01] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
-
-[Mar 23, 2022][21:21:43] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
-[Mar 23, 2022][21:21:43] unknown: Unable to insert data to table 'User': SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'johndoe' for key 'PRIMARY' 
-
-[Mar 23, 2022][21:22:01] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
-
-[Mar 23, 2022][21:22:24] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
-[Mar 23, 2022][21:22:24] unknown: Unable to insert data to table 'Employee': SQLSTATE[42S22]: Column not found: 1054 Unknown column 'SuperManagerId' in 'field list' 
-
-[Mar 23, 2022][21:23:14] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
+[Mar 28, 2022][21:24:03] db_init() in db_config.php: Database 'CountryClub' was not created: Can't create database 'CountryClub'; database exists 
