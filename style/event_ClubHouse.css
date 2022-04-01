@@ -1,0 +1,78 @@
+/* event-clubhouse pages style sheet */
+.introEvents
+{
+    background: lightgray;
+    font-size: 20px;
+    padding :10px 30px 10px 30px;
+    box-shadow: 0 0 10px #999999;
+    margin:0px  10px;
+    
+}
+.header_image_events {
+  /* background-image: url('images/wedding.jpg'); */
+  background-image: -webkit-linear-gradient(
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0.2)
+    ),
+    url("../images/wedding.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("../images/wedding.jpg");
+  position: relative;
+  text-align: center;
+  color: white;
+  width: 100%;
+  height: 100%;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.hotel-image{
+  padding:20p;
+  margin:1px;
+  }
+
+.hotel-image-detail{
+  width:380px;
+  height:480px;
+  margin:30px;
+  padding:10px 15px; 
+  border:1px solid black;
+  box-shadow: 0 0 20px #999999;
+      border-radius: 18px;
+  }
+
+.three{
+  display: flex;
+  }
+  
+.hotel-image-detail img{
+  border:1px solid black;
+  }
+
+  .header_image_clubhouse {
+    /* background-image: url('images/wedding.jpg'); */
+    background-image: -webkit-linear-gradient(
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0.2)
+      ),
+      url("../images/clubhouse.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+      url("../images/clubhouse.jpg");
+    position: relative;
+    text-align: center;
+    color: white;
+    width: 100%;
+    height: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }

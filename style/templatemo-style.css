@@ -6,11 +6,17 @@ https://templatemo.com/tm-520-highway
 
 */
     /* Add a thumb */
-    
     .portfolio-item .thumb {
         position: relative;
     }
-    
+
+    .portfolio-item .image img {
+        width: 466px;
+        height: 360px;
+        object-fit: cover;
+        background-size: cover;
+    }
+
     .grid-portfolio .portfolio-item {
         margin: 15px 0px;
     }

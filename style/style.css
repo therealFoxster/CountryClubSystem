@@ -1,202 +1,376 @@
-* {
-    text-decoration: none;
-    list-style: none;
-    margin: 0px;
-    padding: 0px;
-    outline: none;
-}
+/* DEFAULT STYLES */
 
-body {
-    margin: 0px;
-    padding: 0px;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background-size: cover;
-    background-image: linear-gradient(white, #fceed1);
-    overflow-y: scroll;
-}
+    * {
+        text-decoration: none;
+        list-style: none;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-image: linear-gradient(white, #fceed1);
+    }
 
 
-/* Navigation Menu Styles */
+/* NAVIGATION MENU STYLES */
 
-header {
-    width: 100%;
-    display: table;
-    background-color: #ffffff;
-}
+    header {
+        width: 100%;
+        background-color: #ffffff;
+    }
 
-section {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0px auto;
-    display: table;
-    position: relative;
-}
+    section {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0px auto;
+        display: table;
+    }
 
-#logo {
-    float: left;
-    font-family: "Poppins";
-    font-size: 22px;
-    font-size: 24px;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: #df2935;
-    font-weight: 700;
-    padding: 20px 0px;
-}
+    #logo {
+        float: left;
+        font-family: "Poppins";
+        font-size: 24px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #df2935;
+        padding: 20px 0px;
+    }
 
-nav {
-    width: auto;
-    float: right;
-}
+    nav {
+        width: auto;
+        float: right;
+    }
 
-nav ul {
-    display: table;
-    float: right;
-}
+    nav ul {
+        display: table;
+        float: right;
+    }
 
-nav ul li {
-    float: left;
-}
+    nav ul li {
+        float: left;
+    }
 
-nav ul li:last-child {
-    padding-right: 0px;
-}
+    nav ul li a {
+        color: #000000;
+        font-size: 18px;
+        padding: 25px 20px;
+        display: inline-block;
+    }
 
-nav ul li a {
-    color: #000000;
-    font-size: 18px;
-    padding: 25px 20px;
-    display: inline-block;
-    transition: all 0.5s ease 0s;
-}
-
-nav ul li a:hover {
-    background-color: #df2935;
-    color: #ffffff;
-    transition: all 0.5s ease 0s;
-}
+    nav ul li a:hover {
+        background-color: #df2935;
+        color: #ffffff;
+        transition: all 0.5s ease 0s;
+    }
 
 
-/* Home Header Image Styles */
+/* HEADER IMAGE STYLES */
 
-.header_image {
-    background-image: -webkit-linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_home.jpg");
-    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_home.jpg");
-    position: relative;
-    text-align: center;
-    color: white;
-    width: 100%;
-    height: 100%;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
+    .header_home {
+        background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_home.jpg");
+        background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_home.jpg");
+        position: relative;
+        text-align: center;
+        color: white;
+        width: 100%;
+        height: 100%;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
 
-.header_text {
-    background-color: #000;
-}
+    .header_about_us {
+        background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_aboutus.jpg");
+        background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_aboutus.jpg");
+        position: relative;
+        text-align: center;
+        color: white;
+        width: 100%;
+        height: 70%;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
 
-.header_intro_text {
-    position: absolute;
-    top: 44%;
-    left: 50%;
-    font-size: large;
-    font-weight: bold;
-    transform: translate(-50%, -50%);
-}
+    .header_clubhouse {
+        background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_clubhouse.jpg");
+        background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_clubhouse.jpg");
+        position: relative;
+        text-align: center;
+        color: white;
+        width: 100%;
+        height: 70%;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
 
-.header_heading_text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    font-size: 70px;
-    font-weight: bold;
-    transform: translate(-50%, -50%);
-}
+    .header_amenities {
+        background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_amenities.jpeg");
+        background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_amenities.jpeg");
+        position: relative;
+        text-align: center;
+        color: white;
+        width: 100%;
+        height: 70%;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
 
-.header_subtitle_text {
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    font-size: large;
-    transform: translate(-50%, -50%);
-}
+    .header_dining {
+        background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_dining.jpg");
+        background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_dining.jpg");
+        position: relative;
+        text-align: center;
+        color: white;
+        width: 100%;
+        height: 70%;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+
+    .header_practice {
+        background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_practice.jpg");
+        background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_practice.jpg");
+        position: relative;
+        text-align: center;
+        color: white;
+        width: 100%;
+        height: 70%;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+
+    .header_trainer {
+        background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_trainer.jpg");
+        background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_trainer.jpg");
+        position: relative;
+        text-align: center;
+        color: white;
+        width: 100%;
+        height: 70%;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+
+    .header_gallery {
+        background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_gallery.jpg");
+        background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_gallery.jpg");
+        position: relative;
+        text-align: center;
+        color: white;
+        width: 100%;
+        height: 70%;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+
+    .header_events {
+        background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_events.jpg");
+        background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_events.jpg");
+        position: relative;
+        text-align: center;
+        color: white;
+        width: 100%;
+        height: 70%;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+
+    .header_contact {
+        background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_contact.jpg");
+        background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_contact.jpg");
+        position: relative;
+        text-align: center;
+        color: white;
+        width: 100%;
+        height: 70%;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+
+    .header_intro_text {
+        position: absolute;
+        top: 44%;
+        left: 50%;
+        font-size: large;
+        font-weight: bold;
+        transform: translate(-50%, -50%);
+    }
+
+    .header_heading_text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        font-size: 70px;
+        font-weight: bold;
+        transform: translate(-50%, -50%);
+    }
+
+    .header_subtitle_text {
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        font-size: large;
+        transform: translate(-50%, -50%);
+    }
 
 
-/* Introduction Overview Styles */
+/* OVERVIEW STYLES */
 
-.intro {
-    font-size: 20px;
-    padding: 10px 30px 10px 30px;
-    margin: 50px 50px;
-}
+    .intro {
+        /* font-size: 20px; */
+        padding: 10px 30px 10px 30px;
+        margin: 50px 50px;
+    }
 
-.intro p {
-    margin: 50px 100px;
-    text-align: center;
-    font-size: xx-large;
-    font-weight: 100;
-}
+    .intro p {
+        margin: 50px 100px;
+        text-align: center;
+        font-size: xx-large;
+        font-weight: 100;
+    }
 
+/* HOME - SERVICES STYLES */
 
-/* Amenities Images Styles */
+    .services {
+        padding: 50px;
+        background-color: white;
+    }
 
-.amenities {
-    padding: 50px;
-    background-color: white;
-}
+    .services_three {
+        display: flex;
+    }
 
-.amenities_three {
-    display: flex;
-}
+    .services_container {
+        position: relative;
+    }
 
-.amenities_container {
-    position: relative;
-}
+    .services_images {
+        display: block;
+        margin: 30px;
+        padding: 10px 6px;
+    }
 
-.amenities_images {
-    display: block;
-    margin: 30px;
-    padding: 10px 6px;
-    object-fit: cover;
-}
+    .services_images img {
+        border: 1px solid black;
+        box-shadow: 0 0 20px 0 gray;
+        object-fit: cover;
+    }
 
-.amenities_images img {
-    border: 1px solid black;
-    box-shadow: 0 0 20px 0 gray;
-}
+    .services_overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        opacity: 0;
+        transition: 0.5s ease;
+        background-color: #00b796;
+    }
 
-.amenities_overlay {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    opacity: 0;
-    transition: 0.5s ease;
-    background-color: #008cba;
-}
+    .services_images:hover .services_overlay {
+        opacity: 1;
+    }
 
-.amenities_images:hover .amenities_overlay {
-    opacity: 1;
-}
+    .services_text {
+        color: black;
+        font-size: 20px;
+        font-weight: 500;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
 
-.amenities_text {
-    color: white;
-    font-size: 20px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    text-align: center;
-}
+/* ABOUT US - HISTORY */
 
+    .history {
+        padding: 20px;
+        width: 100%; 
+        height: 360px; 
+        background-color: white;
+    }
+
+    .history_left img {
+        margin: 30px;
+        width: 30%;
+        left: 0;
+        position: absolute;
+        object-fit: cover;
+        border: 5px solid #555;
+    }
+
+    .history_right {
+        width: 65%;
+        right: 0;
+        margin: 20px 0px;
+        position: absolute;
+        overflow-x: hidden;
+    }
+
+    .history_right h1 {
+        margin-top: 10px;
+    }
+
+    .history_right p {
+        margin: 10px 80px 10px 0px;
+    }
+
+    .history_right h3 {
+        margin-top: 20px;
+    }
 
 /* More Amenities Styles */
 
@@ -240,20 +414,20 @@ nav ul li a:hover {
 }
 
 .dest {
-    padding: 600px 60px 10px 60px;
+    padding: 40px 50px 10px 50px;
     margin-left: 200px;
 }
 
 .vertical {
     border-left: 1px solid black;
-    margin-top: 600px;
+    margin-top: 50px;
     height: 150px;
     position: absolute;
     left: 52%;
 }
 
 .contact {
-    padding: 600px 60px 10px 60px;
+    padding: 40px 50px 10px 50px;
     margin-left: 400px;
     margin-top: 20px;
 }
@@ -286,15 +460,27 @@ nav ul li a:hover {
 }
 
 .contact-box {
-    width: 580px;
-    height: 420px;
+    width: 40%;
+    height: fit-content;
     position: relative;
     margin: 6% auto;
     background: white;
     box-shadow: 0 0 10px black;
-    padding: 5px;
+    padding: 10px;
     border-radius: 20px;
     overflow: hidden;
+}
+
+.contact-box form {
+    padding: 20px;
+}
+
+.contact-box form h1 {
+    text-align: center;
+}
+
+.contact-box form p {
+    margin: 10px 50px;
 }
 
 .input-field {
@@ -322,109 +508,6 @@ nav ul li a:hover {
 }
 
 
-/* Dining Header Style */
-
-.header_dining {
-    background-image: -webkit-linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_dining.jpg");
-    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_dining.jpg");
-    position: relative;
-    text-align: center;
-    color: white;
-    width: 100%;
-    height: 70%;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-
-.header_amenities {
-    background-image: -webkit-linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_amenities.jpeg");
-    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_amenities.jpeg");
-    position: relative;
-    text-align: center;
-    color: white;
-    width: 100%;
-    height: 70%;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-
-.header_practice {
-    background-image: -webkit-linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_practice.jpg");
-    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_practice.jpg");
-    position: relative;
-    text-align: center;
-    color: white;
-    width: 100%;
-    height: 70%;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-
-.header_trainer {
-    background-image: -webkit-linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_trainer.jpg");
-    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_trainer.jpg");
-    position: relative;
-    text-align: center;
-    color: white;
-    width: 100%;
-    height: 70%;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-
-.header_gallery {
-    background-image: -webkit-linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_gallery.jpg");
-    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_gallery.jpg");
-    position: relative;
-    text-align: center;
-    color: white;
-    width: 100%;
-    height: 70%;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-
-.header_contact {
-    background-image: -webkit-linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_contact.jpg");
-    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_contact.jpg");
-    position: relative;
-    text-align: center;
-    color: white;
-    width: 100%;
-    height: 70%;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
 
 .column {
     float: left;

@@ -21,10 +21,10 @@
                         <li><a href="clubhouse.html">Clubhouse</a></li>
                         <li><a href="amenities.html">Amenities</a></li>
                         <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="event.php">Events</a></li>
+                        <li><a href="event.html">Events</a></li>
                         <li><a href="contact.html">Contact</a></li>
                         <li><a href="login.html">Login</a></li>
-                        <li><a href="signup.html">Signup</a></li>
+                        <li><a href="register.html">Signup</a></li>
                     </ul>
                 </nav>
             </section>
@@ -34,49 +34,55 @@
     <div class="header_contact">
         <div class="header_text">
             <span class="header_heading_text">CONTACT</span>
-            <span class="header_subtitle_text">FOOD THAT TASTES LIKE AT HOME.</span>
+            <span class="header_subtitle_text">LET US KNOW HOW WE CAN HELP</span>
         </div>
     </div>
 
-    <div class='intro'>
-        <p>
-            <div class='last'>
+    <div class="contact-box">
+        <form id='mail' class="mail-form" action="mailto:vengadeshks777@gmail.com" method="post" enctype="text/plain">
+            <h1>Contact us</h1>
+            <p>
+                Do you have any questions? Please do not hesitate to contact us directly. Our team will come back to you
+                within a matter of hours to help you.</p>
+            <input type='name' name='name' class='input-field' placeholder="Name" required><br>
+            <input type='email' name='email' class='input-field' placeholder="Email" required><br>
+            <input type='sub' name='sub' class='input-field' placeholder="Subject" required><br>
+            <textarea name="message" class='input-field' placeholder='Message'></textarea><br><br>
 
-                <div class='dest'> &nbsp;
-                    <h2><i class="fa fa-address-book" aria-hidden="true"></i>&nbsp;ADDRESS</h2>
-                    <address style='font-size:20px'>
+            <button type='submit' class='class-btn'>Send</button>
+        </form>
+    </div>
+
+    <div class='last'>
+
+        <div class='dest'> &nbsp;
+            <h2><i class="fa fa-address-book" aria-hidden="true"></i>&nbsp;ADDRESS</h2>
+            <address style='font-size:20px'>
                 Country Club<br />
                 8705 Angus Dr<br />
                 Vancouver, BC, V6P6G2<br />
-              </address>
-                </div>
+            </address>
+        </div>
 
-                <div class="vertical"></div>
+        <div class="vertical"></div>
 
-                <div class='contact'>
+        <div class='contact'>
 
-                    <h2><i class="fa fa-phone" aria-hidden="true"></i> &nbsp;CONTACT</h2>
-                    <p style='font-size:20px'>
-                        Telephone Number: +9544 3220 0000<br> Fax Number: +9144 2220 0300<br> Email Id: pasific@itc.in</p>
-                </div>
-            </div>
-        </p>
+            <h2><i class="fa fa-phone" aria-hidden="true"></i> &nbsp;CONTACT</h2>
+            <p style='font-size:20px'>
+                Telephone Number: +1 123 456 7890<br> Fax Number: +1 123 456 7890<br> Email Id: country@club.com</p>
+        </div>
     </div>
 
-    <hr style="height:1px;margin:0px;background: black ">
+    <hr style="height:1px;margin:0px;background: black">
     <div class='footer'>
-        <p style="margin:10px; float:left; ">
+        <p style="margin:10px; float:left;">
             Terms | Privacy | SiteMap | FAQs | Cookie Statement
         </p>
-        <p style="margin:10px; float:right; ">
+        <p style="margin:10px; float:right;">
             &copy; Country Club
         </p>
     </div>
-
-    <script src="script/jquery.min.js "></script>
-    <script src="script/main.js "></script>
-    <script src="script/selectionbox_script.js"></script>
-    <script src="script/snackbar.js"></script>
 
 </body>
 
