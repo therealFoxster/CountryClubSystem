@@ -23,6 +23,16 @@ try {
     err_log("Error while running setup script: $e", $this_file);
 }
 
+# Setting up Time_ table
+for ($h = 0; $h < 24; $h++)
+    for ($m = 0; $m < 60; $m++)
+        try {
+            $time_id = date('H:i', strtotime("$h:$m"));
+            $db->exec("INSERT IGNORE INTO Time_ VALUES ('$time_id')");
+        } catch (PDOException $e) {
+            err_log("Error while setting up 'Time_' table: $e", $this_file);
+        }
+
 function db_init() {
     global $server_url, $__username, $__password, $dbname, $this_file, $conn;
     

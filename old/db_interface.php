@@ -2,11 +2,7 @@
 $this_file = basename(__FILE__, ".php") . ".php";
 
 ############################
-
-############################
 ##### Public functions #####
-############################
-
 ############################
 
 /**
@@ -14,11 +10,6 @@ $this_file = basename(__FILE__, ".php") . ".php";
  * 
  * membership functions
  */
-
-
-###################
-##### Manager #####
-###################
 
 /**
  * Insert a manager to the 'Manager' table
@@ -42,17 +33,11 @@ function add_manager(string $fname, string $lname, ?string $mname, string $dob, 
     __insert_into_table("Manager", [$fname, $lname, $mname, $dob, $email, $phone, $address, $date_joined, $title, $username, $super_manager_id], "FName, LName, MName, DOB, Email, PhoneNumber, Address, DateJoined, Title, Username, SuperManagerId");
 }
 
-/**
- * Finds a manager matching the provided email.
- *
- * @param  string $email  The email to search for.
- * @return null  If the manager was not found.
- * @return $manager  An array representing the record of the manager.
- */
 function find_manager_with_email($email) {
-    if ($manager = __find_record_in_table("Manager", "Email = '$email'"))
-        return $manager;
-    else return null;
+    $manager = __find_record_in_table("Manager", "Email = '$email'");
+    if (!$manager)
+        return null;
+    else return $manager;
 }
 
 /**
@@ -64,10 +49,6 @@ function find_manager_with_email($email) {
 function remove_manager(int $id) {
     __delete_from_table("Manager", "ManagerId = $id");
 }
-
-####################
-##### Employee #####
-####################
 
 /**
  * Insert an employee to the 'Employee' table
@@ -91,17 +72,11 @@ function add_employee(string $fname, string $lname, ?string $mname, string $dob,
     __insert_into_table("Employee", [$fname, $lname, $mname, $dob, $email, $phone, $address, $date_joined, $title, $username, $manager_id], "FName, LName, MName, DOB, Email, PhoneNumber, Address, DateJoined, Title, Username, ManagerId");
 }
 
-/**
- * Finds a employee matching the provided email.
- *
- * @param  string $email  The email to search for.
- * @return null  If the employee was not found.
- * @return $employee  An array representing the record of the employee.
- */
 function find_employee_with_email($email) {
-    if ($employee = __find_record_in_table("Employee", "Email = '$email'"))
-        return $employee;
-    else return null;
+    $employee = __find_record_in_table("Employee", "Email = '$email'");
+    if (!$employee)
+        return null;
+    else return $employee;
 }
 
 /**
@@ -113,10 +88,6 @@ function find_employee_with_email($email) {
 function remove_employee(int $id) {
     __delete_from_table("Employee", "EmployeeId = $id");
 }
-
-####################
-##### Customer #####
-####################
 
 /**
  * Insert a customer to the 'Customer' table
@@ -163,11 +134,15 @@ function add_customer_with_email(string $fname, string $lname, ?string $mname, s
  * @return $customer  An array representing the record of the customer.
  */
 function find_customer_with_username($username) {
-    if (find_user($username, 0)) // Customer username exists
-        if ($customer = __find_record_in_table("Customer", "Username = '$username'"))
-            return $customer;
-        else return null;
-    else return null;
+    $user = find_user($username, 0);
+    if (!$user)
+        return null;
+    else {
+        $customer = __find_record_in_table("Customer", "Username = '$username'");
+        if (!$customer)
+            return null;
+        else return $customer;
+    }
 }
 
 /**
@@ -178,9 +153,10 @@ function find_customer_with_username($username) {
  * @return $customer  An array representing the record of the customer.
  */
 function find_customer_with_email($email) {
-    if ($customer = __find_record_in_table("Customer", "Email = '$email'"))
-        return $customer;
-    else return null;
+    $customer = __find_record_in_table("Customer", "Email = '$email'");
+    if (!$customer)
+        return null;
+    else return $customer;
 }
 
 /**
@@ -193,10 +169,6 @@ function remove_customer(int $id) {
     __delete_from_table("Customer", "CustomerId = $id");
 }
 
-################
-##### User #####
-################
-
 /**
  * Finds a user matching the provided username.
  *
@@ -205,13 +177,14 @@ function remove_customer(int $id) {
  * @return null  If the user was not found.
  * @return $user  An array representing the record of the user.
  */
-function find_user($username, ?int $admin_priv=null) {
+function find_user($username, $admin_priv=null) {
     if ($admin_priv !== null)
         $admin_priv = "AND AdminPrivilege = $admin_priv";
     
-    if ($user = __find_record_in_table("User", "Username = '$username' $admin_priv"))
-        return $user;
-    else return null;
+    $user = __find_record_in_table("User", "Username = '$username' $admin_priv");
+    if (!$user)
+        return null;
+    else return $user;
 }
 
 /**
@@ -219,93 +192,15 @@ function find_user($username, ?int $admin_priv=null) {
  * Removes a user from the User table; use this function to remove customer, employee or manager using their username
  * 
  * @param  string $username  The username of the user.
- * @return void
  */
 function remove_user(string $username) {
     __delete_from_table("User", "Username = '$username'");
 }
 
-######################
-##### Restaurant #####
-######################
 
-/**
- * Adds a restaurant booking to the database ('RestaurantBooking' table)
- *
- * @param  string $email  The email of the customer (must exist in 'Customer' table).
- * @param  string $date  The date booked for (format: yyyy-mm-dd).
- * @param  ?string $time  The time booked for (format: 24h (from 00:00 to 23:59)) (nullable).
- * @param  ?int $num_guests  The number of guests (nullable).
- * @param  ?string $notes  Any notes related to the booking (nullable).
- * @return void
- */
-function add_restaurant_booking(string $email, string $date, ?string $time, ?int $num_guests, ?string $notes) {
-    __insert_into_table("RestaurantBooking", [$email, $date, $time, $num_guests, $notes], "CustomerEmail, BookedDate, BookedTime, NumGuests, Notes");
-}
-
-/**
- * Finds a restaurant booking using a booking ID
- *
- * @param  int $id  The booking ID.
- * @return null  If no booking was found.
- * @return $booking  The array representing the booking.
- */
-function find_restaurant_booking_with_booking_id(int $id) {
-    if ($booking = __find_record_in_table("RestaurantBooking", "BookingId = $id"))
-        return $booking;
-    else return null;
-}
-
-/**
- * Finds a restaurant booking using a customer's email
- *
- * @param  string $email  The customer's email.
- * @param  string $date  The date booked for (format: yyyy-mm-dd, default: today's date).
- * @return null  If no booking was found.
- * @return $booking  The array representing the booking.
- */
-function find_restaurant_booking_with_email(string $email, string $date=null) {
-    if ($date === null)
-        $date = date("Y-m-d");
-    if ($booking = __find_record_in_table("RestaurantBooking", "CustomerEmail = '$email' AND BookedDate = '$date'"))
-        return $booking;
-    else return null;
-}
-
-/**
- *
- * Removes a booking from the 'RestaurantBooking' table using a booking ID
- * 
- * @param  int $id  The booking ID.
- * @return void
- */
-function remove_restaurant_booking_with_booking_id(int $id) {
-    __delete_from_table("RestaurantBooking", "BookingId = $id");
-}
-
-/**
- *
- * Removes a booking from the 'RestaurantBooking' table using a customer's email
- * 
- * @param  string $email  The customer's email.
- * @param  string $date  The date booked for (format: yyyy-mm-dd, default: today's date).
- * @return $r  The number of bookings removed.
- */
-function remove_restaurant_booking_with_email(string $email, string $date=null) {
-    if (!$date)
-        $date = date("Y-m-d");
-    
-    return __delete_from_table("RestaurantBooking", "CustomerEmail = '$email' AND BookedDate = '$date'");
-}
-
-
-
-#############################
 
 #############################
 ##### Private functions #####
-#############################
-
 #############################
 
 function __add_user(string $username, string $password, int $admin_privilege) {
@@ -314,7 +209,7 @@ function __add_user(string $username, string $password, int $admin_privilege) {
 
 function __insert_into_table(string $table_name, array $values, $columns_str="") {
     global $db;
-
+    
     $values_str = "";
     foreach ($values as $value) {
         if (gettype($value) == "string")
@@ -327,22 +222,23 @@ function __insert_into_table(string $table_name, array $values, $columns_str="")
     } 
     $values_str = substr($values_str, 0, -2);
 
-    test_log("INSERT INTO $table_name ($columns_str) VALUES ($values_str)");
-    
     try {
         $db->exec("INSERT INTO $table_name ($columns_str) VALUES ($values_str)");
     } catch (PDOException $e) {
         // println("Unable to insert data to table '$table_name': " . $e->getMessage());
         err_log("Unable to insert data to table '$table_name': " . $e->getMessage());
     }
+
+        # Test
+        test_log("INSERT INTO $table_name ($columns_str) VALUES ($values_str)");
+    //  println("INSERT INTO $table_name ($columns_str) VALUES ($values_str)");
 }
 
 function __delete_from_table(string $table_name, string $condition) {
     global $db;
 
     try {
-        $r = $db->exec("DELETE FROM $table_name WHERE $condition");
-        return $r;
+        $db->exec("DELETE FROM $table_name WHERE $condition");
     } catch (PDOException $e) {
         err_log("Unable to delete row from table '$table_name': $e->getMessage()");
     }

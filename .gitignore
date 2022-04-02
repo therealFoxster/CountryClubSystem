@@ -1,4 +1,4 @@
-test.log
+*.log
 .vscode
 
 # Temporary files
