@@ -4,10 +4,10 @@ $server_url = "localhost:8889";
 $__username = "root";
 $__password = "root";
 $dbname = "CountryClub";
-$setup_script = file_get_contents("config/setup.sql");
+$setup_script = file_get_contents("db/config/setup.sql");
 $date = date("[M j, o][G:i:s]"); 
-$err_log = "./logs/err.log";
-$test_log = "./logs/test.log"; file_put_contents($test_log, ""); # Making test log blank
+$err_log = "db/logs/err.log";
+$test_log = "db/logs/test.log"; file_put_contents($test_log, ""); # Making test log blank
 $this_file = basename(__FILE__, ".php") . ".php";
 
 error_log("\n", 3, $err_log);
@@ -40,8 +40,7 @@ function db_init() {
         // println("Database '$dbname' was not created: " . $connection->error); 
         global $date;
         err_log("Database '$dbname' was not created: $connection->error", "db_init() in $this_file");
-    } 
-
+    }
 }
 
 function db_connect() {

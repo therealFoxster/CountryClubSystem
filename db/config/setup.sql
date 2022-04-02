@@ -2,7 +2,7 @@
  * setup.sql
  */
 
-DROP DATABASE IF EXISTS CountryClub; -- Resets database after each run for testing
+-- DROP DATABASE IF EXISTS CountryClub; -- Resets database after each run for testing
 CREATE DATABASE IF NOT EXISTS CountryClub;
 USE CountryClub;
 

@@ -1,11 +1,8 @@
-<?php require 'db/db_interface.php';
-
-include 'config.php';
+<?php 
+require 'db/db_interface.php'; 
 
 error_reporting(0);
-
 session_start();
-
 
 $__err="";
 if (isset($_SESSION['username'])) {
