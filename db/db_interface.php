@@ -266,6 +266,31 @@ function add_restaurant_booking(string $email, string $date, ?string $time, ?int
     __insert_into_table("RestaurantBooking", [$email, $date, $time, $num_guests, $notes], "CustomerEmail, BookedDate, BookedTime, NumGuests, Notes");
 }
 
+
+/**
+ * Finds the number of available seats at for certain time
+ *
+ * @param  string $time  The time to base the search on (format: hh:mm (24h)).
+ * @param  string $date  The date to base the search on (format: yyyy-mm-dd, default: today's date).
+ * @return $seats  The number of available seats.
+ */
+function avail_seats_for_time(string $time, string $date = null) {
+    if ($date === null) $date = date("Y-m-d");
+    
+    $total_seats = 100; $seats = 0;
+    $h = intval(explode(":", $time)[0]);
+
+    $hours = [$h - 1, $h, $h + 1];
+    foreach ($hours as $hour) {
+        $bookings = __find_records_in_table("RestaurantBooking", "BookedTime LIKE '$hour%' AND BookedDate = '$date'");
+        foreach ($bookings as $booking) {
+            $seats += $booking["NumGuests"];
+        }
+    }
+
+    return $total_seats - $seats;
+}
+
 /**
  * Finds a restaurant booking using a booking ID
  *
@@ -287,7 +312,7 @@ function find_restaurant_booking_with_booking_id(int $id) {
  * @return null  If no booking was found.
  * @return $booking  The array representing the booking.
  */
-function find_restaurant_booking_with_email(string $email, string $date=null) {
+function find_restaurant_booking_with_email(string $email, string $date = null) {
     if ($date === null)
         $date = date("Y-m-d");
     if ($booking = __find_record_in_table("RestaurantBooking", "CustomerEmail = '$email' AND BookedDate = '$date'"))
