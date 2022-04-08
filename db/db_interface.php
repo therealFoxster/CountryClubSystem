@@ -9,13 +9,6 @@ $this_file = basename(__FILE__, ".php") . ".php";
 
 ############################
 
-/**
- * TODOs
- * 
- * membership functions
- */
-
-
 ###################
 ##### Manager #####
 ###################
@@ -40,6 +33,21 @@ $this_file = basename(__FILE__, ".php") . ".php";
 function add_manager(string $fname, string $lname, ?string $mname, string $dob, string $email, ?int $phone, ?string $address, string $date_joined, string $title, ?int $super_manager_id, string $username, string $password) {
     __add_user($username, $password, 2); // $admin_privilege = 2 (full privilege)
     __insert_into_table("Manager", [$fname, $lname, $mname, $dob, $email, $phone, $address, $date_joined, $title, $username, $super_manager_id], "FName, LName, MName, DOB, Email, PhoneNumber, Address, DateJoined, Title, Username, SuperManagerId");
+}
+
+/**
+ * Finds a manager matching the provided username.
+ *
+ * @param  string $username  The username to search for.
+ * @return null  If the manager was not found.
+ * @return $manager  An array representing the record of the manager.
+ */
+function find_manager_with_username($username) {
+    if (find_user($username, 0)) // Manager username exists
+        if ($manager = __find_record_in_table("Manager", "Username = '$username'"))
+            return $manager;
+        else return null;
+    else return null;
 }
 
 /**
@@ -89,6 +97,21 @@ function remove_manager(int $id) {
 function add_employee(string $fname, string $lname, ?string $mname, string $dob, string $email, ?int $phone, ?string $address, string $date_joined, string $title, ?int $manager_id, string $username, string $password) {
     __add_user($username, $password, 1); // $admin_privilege = 1 (moderate privilege)
     __insert_into_table("Employee", [$fname, $lname, $mname, $dob, $email, $phone, $address, $date_joined, $title, $username, $manager_id], "FName, LName, MName, DOB, Email, PhoneNumber, Address, DateJoined, Title, Username, ManagerId");
+}
+
+/**
+ * Finds a employee matching the provided username.
+ *
+ * @param  string $username  The username to search for.
+ * @return null  If the employee was not found.
+ * @return $employee  An array representing the record of the employee.
+ */
+function find_employee_with_username($username) {
+    if (find_user($username, 0)) // Employee username exists
+        if ($employee = __find_record_in_table("Employee", "Username = '$username'"))
+            return $employee;
+        else return null;
+    else return null;
 }
 
 /**
@@ -298,7 +321,13 @@ function remove_restaurant_booking_with_email(string $email, string $date=null) 
     return __delete_from_table("RestaurantBooking", "CustomerEmail = '$email' AND BookedDate = '$date'");
 }
 
+/**
+ * TODOs
+ * 
+ * membership functions
+ */
 
+ 
 
 #############################
 
@@ -382,6 +411,22 @@ function __find_record_in_table(string $table_name, $condition) {
         
     } catch (PDOException $e) {
         err_log("Unable to execuate query", "__find_record_in_table() in $this_file");
+    }
+}
+
+function __find_records_in_table(string $table_name, $condition) {
+    global $db, $this_file;
+
+    try {
+        $q = $db->query("SELECT * FROM $table_name WHERE $condition");
+        $r = $q->fetchAll();
+
+        if (!$r)
+            return null;
+        else return $r;
+        
+    } catch (PDOException $e) {
+        err_log("Unable to execuate query", "__find_records_in_table() in $this_file");
     }
 }
 

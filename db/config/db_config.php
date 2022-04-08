@@ -33,6 +33,19 @@ for ($h = 0; $h < 24; $h++)
             err_log("Error while setting up 'Time_' table: $e", $this_file);
         }
 
+# Setting up Membership table
+$memberships = [
+    ["Silver", 200],
+    ["Gold", 500],
+    ["Platinum", 800]
+]; 
+foreach ($memberships as $membership)
+    try {
+        $db->exec("INSERT IGNORE INTO Membership (MembershipName, Price) VALUES ('$membership[0]', $membership[1])");
+    } catch (PDOException $e) {
+        err_log("Error while setting up 'Membership' table: $e", $this_file);
+    }
+
 function db_init() {
     global $server_url, $__username, $__password, $dbname, $this_file, $conn;
     
@@ -43,7 +56,7 @@ function db_init() {
     // println("Connected to server at $server_url.");
 
     // println("Creating database '$dbname'...");
-    $sql = "CREATE DATABASE $dbname";
+    $sql = "CREATE DATABASE IF NOT EXISTS $dbname";
     if ($connection->query($sql) === TRUE) {
         // println("Created database '$dbname'.");
     } else {
