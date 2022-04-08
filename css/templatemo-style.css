@@ -92,10 +92,14 @@ https://templatemo.com/tm-520-highway
     }
 
     /*  */
-
-    .service-portfolio {
+    .service-portfolio-home {
         width: 100%;
         height: 800px;
+        background-color: white;
+    }
+    .service-portfolio-amenities {
+        width: 100%;
+        height: 450px;
         background-color: white;
     }
 
@@ -110,11 +114,11 @@ https://templatemo.com/tm-520-highway
         background-size: cover;
     }
 
-    .service-portfolio .service-portfolio-item {
+    .service-portfolio-home .service-portfolio-item {
         margin: 15px 0px;
     }
 
-    .service-portfolio .service-portfolio-item h1 {
+    .service-portfolio-home .service-portfolio-item h1 {
         position: relative;
         font-size: 22px;
         text-transform: uppercase;
@@ -125,4 +129,19 @@ https://templatemo.com/tm-520-highway
         letter-spacing: 0.5px;
         top: 350px;
     }
-        
+    
+    .service-portfolio-amenities .service-portfolio-item {
+        margin: 15px 0px;
+    }
+
+    .service-portfolio-amenities .service-portfolio-item h1 {
+        position: relative;
+        font-size: 22px;
+        text-transform: uppercase;
+        color: #fff;
+        display: inline-block;
+        padding-left: 20px;
+        line-height: 15px;
+        letter-spacing: 0.5px;
+        top: 350px;
+    }
