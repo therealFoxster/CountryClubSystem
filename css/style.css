@@ -306,27 +306,12 @@
         object-fit: cover;
     }
 
-    .services_overlay {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        opacity: 0;
-        transition: 0.5s ease;
-        background-color: #00b796;
-    }
-
-    .services_images:hover .services_overlay {
-        opacity: 1;
-    }
-
     .services_text {
         color: black;
-        font-size: 20px;
+        font-size: 24px;
         font-weight: 500;
         position: absolute;
-        top: 50%;
+        top: 92%;
         left: 50%;
         -webkit-transform: translate(-50%, -50%);
         -ms-transform: translate(-50%, -50%);
