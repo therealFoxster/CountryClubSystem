@@ -25,6 +25,18 @@ if (isset($_POST['submit'])) {
 	$user = find_user($username);
 	if ($user && $password === $user['PasswordHash']) {
 		# TODO: Set destination page for post-login
+		
+		switch ($user['AdminPrivilege']) {
+			case 0: // Customer
+				# code...
+				break;
+			case 1: // Employee
+				# code...
+				break;
+			case 2: // Manager
+				# code...
+				break;
+		}
 
 		$__err = "Successfully logged in. (admin: ${user['AdminPrivilege']})"; # Test
 	} else $__err = "Invalid username/email or password.";

@@ -2,7 +2,7 @@
  * setup.sql
  */
 
--- DROP DATABASE IF EXISTS CountryClub; -- Resets database after each run for testing
+-- DROP DATABASE IF EXISTS CountryClub; -- Resets database for testing
 CREATE DATABASE IF NOT EXISTS CountryClub;
 USE CountryClub;
 
@@ -116,14 +116,14 @@ CREATE TABLE IF NOT EXISTS Customer (
 
 /*** Time_ */
 CREATE TABLE IF NOT EXISTS Time_ (
-    TimeId INT NOT NULL PRIMARY KEY
+    TimeId VARCHAR(8) NOT NULL PRIMARY KEY
 );
 
 /*** TimeSlot */
 CREATE TABLE IF NOT EXISTS TimeSlot (
     TimeSlotId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    StartTime INT NOT NULL, -- FK Time_.TimeId
-    EndTime INT NOT NULL, -- FK Time_.TimeId
+    StartTime VARCHAR(8) NOT NULL, -- FK Time_.TimeId
+    EndTime VARCHAR(8) NOT NULL, -- FK Time_.TimeId
 
     CONSTRAINT TIME_SLOT_FK1 FOREIGN KEY (StartTime)
         REFERENCES Time_ (TimeId)
@@ -174,7 +174,7 @@ CREATE TABLE IF NOT EXISTS CourseBooking (
 CREATE TABLE IF NOT EXISTS CourseCheckIn (
     CustomerEmail VARCHAR(64) NOT NULL, -- FK Customer.Email
     CheckInDate DATE NOT NULL,
-    CheckInTime INT NOT NULL, -- FK Time_.TimeId
+    CheckInTime VARCHAR(8) NOT NULL, -- FK Time_.TimeId
     BookingId INT NOT NULL, -- FK CourseBooking.BookingId
     EmployeeId INT NOT NULL, -- FK Employee.EmployeeId
     Notes VARCHAR(512),
@@ -209,11 +209,11 @@ CREATE TABLE IF NOT EXISTS RestaurantBooking (
     BookingId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     CustomerEmail VARCHAR(64) NOT NULL, -- FK Customer.Email
     BookedDate DATE NOT NULL,
-    BookedTime INT, -- FK Time_.TimeId
+    BookedTime VARCHAR(8), -- FK Time_.TimeId
     NumGuests INT,
     Notes VARCHAR(512),
 
-    CONSTRAINT RESTAURANT_BOOKING_FK1 FOREIGN KEY(CustomerEmail)
+    CONSTRAINT RESTAURANT_BOOKING_FK1 FOREIGN KEY (CustomerEmail)
         REFERENCES Customer (Email)
         ON UPDATE CASCADE
         ON DELETE CASCADE,
@@ -227,7 +227,7 @@ CREATE TABLE IF NOT EXISTS RestaurantBooking (
 CREATE TABLE IF NOT EXISTS RestaurantCheckIn (
     CustomerEmail VARCHAR(64) NOT NULL, -- FK Customer.Email
     CheckInDate DATE NOT NULL,
-    CheckInTime INT, -- FK Time_.TimeId
+    CheckInTime VARCHAR(8), -- FK Time_.TimeId
     BookingId INT NOT NULL, -- FK RestaurantBooking.BookingId
     EmployeeId INT, -- FK Employee.EmployeeId
     Notes VARCHAR(512),
@@ -266,7 +266,7 @@ CREATE TABLE IF NOT EXISTS FoodOrder (
     CustomerEmail VARCHAR(64) NOT NULL, -- FK Customer.Email
     EmployeeId INT, -- FK Employee.EmployeeId
     DateOrdered DATE NOT NULL,
-    TimeOrdered INT, -- FK Time_.TimeId
+    TimeOrdered VARCHAR(8), -- FK Time_.TimeId
     Notes VARCHAR(512),
 
     CONSTRAINT FOOD_ORDER_FK1 FOREIGN KEY (CustomerEmail)
