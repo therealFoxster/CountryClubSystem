@@ -120,6 +120,7 @@ text-transform: uppercase;
                         
                         <style> /* Username hover dropdown */
                             .dropdown {position: relative; display: inline-block;}
+                            .dropdown a {color: #df2935;}
                             
                             .dropdown-content {
                                 display: none;
@@ -155,8 +156,8 @@ text-transform: uppercase;
                                 </li>";
                             } else {
                                 echo '
-                                <li><a href="login.php">Login</a></li>
-                                <li><a href="register.php">Signup</a></li>';
+                                <li><a href="login.php">Log In</a></li>
+                                <li><a href="register.php">Sign Up</a></li>';
                             }
                         ?>
                     </ul>
