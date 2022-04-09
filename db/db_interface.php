@@ -271,7 +271,7 @@ function add_restaurant_booking(string $email, string $date, ?string $time, ?int
  * Finds the number of available seats at for certain time
  *
  * @param  string $time  The time to base the search on (format: hh:mm (24h)).
- * @param  string $date  The date to base the search on (format: yyyy-mm-dd, default: today's date).
+ * @param  ?string $date  The date to base the search on (nullable)(format: yyyy-mm-dd, default: today's date).
  * @return $seats  The number of available seats.
  */
 function avail_seats_for_time(string $time, string $date = null) {

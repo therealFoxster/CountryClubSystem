@@ -24,8 +24,9 @@ if (isset($_POST['submit'])) {
 
 	$user = find_user($username);
 	if ($user && $password === $user['PasswordHash']) {
-		# TODO: Set destination page for post-login
-		
+		$_SESSION['username']=$username;
+		header("Location: index.php");
+
 		switch ($user['AdminPrivilege']) {
 			case 0: // Customer
 				# code...
@@ -38,7 +39,7 @@ if (isset($_POST['submit'])) {
 				break;
 		}
 
-		$__err = "Successfully logged in. (admin: ${user['AdminPrivilege']})"; # Test
+		// $__err = "Successfully logged in. (admin: ${user['AdminPrivilege']})"; # Test
 	} else $__err = "Invalid username/email or password.";
 }
 
