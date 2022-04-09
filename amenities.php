@@ -92,7 +92,7 @@
             <div class="row">
                 <div class="col-md-4 col-sm-6">
                     <div class="service-portfolio-item">
-                        <a href="./clubhouse.html">
+                        <a href="./clubhouse.php">
                             <div class="thumb">
                                 <div class="hover-effect">
                                     <div class="hover-content">
@@ -108,7 +108,7 @@
                 </div>
                 <div class="col-md-4 col-sm-6">
                     <div class="service-portfolio-item">
-                        <a href="./dining.html">
+                        <a href="./dining.php">
                             <div class="thumb">
                                 <div class="hover-effect">
                                     <div class="hover-content">
@@ -124,7 +124,7 @@
                 </div>
                 <div class="col-md-4 col-sm-6">
                     <div class="service-portfolio-item">
-                        <a href="./trainer.html">
+                        <a href="./trainer.php">
                             <div class="thumb">
                                 <div class="hover-effect">
                                     <div class="hover-content">

@@ -99,7 +99,7 @@
           <span>Meeting Rooms </span><br>
           <span>Avg Area - 60 m2</span><br>
           <span>Capacity - 12 to 24 pax</span><br>
-          <p><a class='readmore' href="booking.html">BOOK NOW</a></p>
+          <p><a class='readmore' href="booking.php">BOOK NOW</a></p>
         </div>
         <div class='hotel-image-detail'>
           <img class='img' src='images/event.jpg' alt='Image Error' width='350px' height='200px'>
@@ -109,7 +109,7 @@
           <span style='text-align: center'>Room A,B,C</span><br>
           <span style='text-align: center'>Avg Area - 2465 m2</span><br>
           <span style='text-align: center'>Capacity - 250 to 2400 pax</span><br>
-          <p><a class='readmore' href="booking.html">BOOK NOW</a></p>
+          <p><a class='readmore' href="booking.php">BOOK NOW</a></p>
         </div>
         <div class='hotel-image-detail'>
           <img class='img' src='images/wedding.jpg' alt='Image Error' width='350px' height='200px'>
@@ -119,7 +119,7 @@
           <span style='text-align: center'>ClubHouse</span><br>
           <span style='text-align: center'>Avg Area - 2465 m2</span><br>
           <span style='text-align: center'>Capacity - 250 to 2500 pax</span><br>
-          <p><a class='readmore' href="booking.html">BOOK NOW</a></p>
+          <p><a class='readmore' href="booking.php">BOOK NOW</a></p>
         </div>
       </div>
     </div>

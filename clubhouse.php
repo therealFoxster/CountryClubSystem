@@ -105,11 +105,11 @@
             resident celebrity chefs. </span><br>
             <span style='text-align: center'>up to 12 persons per table</span><br>
             <span style='text-align: center'>Capacity - 250</span><br>
-          <p><a class='readmore' href="booking.html">BOOK NOW</a></p>
+          <p><a class='readmore' href="booking.php">BOOK NOW</a></p>
         </div>
       </div>
     </div>
-  </div>
+  </div>.php
 
   <hr style="height:1px;margin:0px;background: black">
   <div class='footer'>
