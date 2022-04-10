@@ -2,14 +2,36 @@
 session_start();
 require 'db/db_interface.php';
 
-if (!isset($_SESSION['username'])==NULL) {
- $useremail= (find_customer_with_username($_SESSION['username']));
- foreach ($useremail as $value) {
-  echo "$value <br>";
- }
+if (!isset($_SESSION['username'])==null){
+$username = $_SESSION['username']; $user = null;
+    switch (find_user($username)["AdminPrivilege"]) {
+        case 0: // Customer
+            $user = find_customer_with_username($username);
+            break;
+        case 1: // Employee
+            $user = find_employee_with_username($user);
+            break;
+        case 2: // Manager
+            $user = find_manager_with_username($username);
+            break;
+    }
+    $use=$user["FName"];
+    $_SESSION['email']=$user["Email"];
+    $_SESSION['fname']=$user["FName"];
+    $_SESSION['lname']=$user["LName"]; // User's first name
+    $_SESSION['mname']=$user["MName"];
+    $_SESSION['dob']=$user["DOB"];
+    $_SESSION['phonenumber']=$user["PhoneNumber"];
+    $_SESSION['address']=$user["Address"];
+    $_SESSION['datejoined']=$user["DateJoined"];
+    $_SESSION['membershipid']=$user["MembershipId"];
+    $_SESSION['membersince']=$user["MemberSince"];
+    $_SESSION['usename']=$user["Username"];
 
-}
 
+
+
+  }
 ?>
 
 
@@ -172,25 +194,28 @@ text-transform: uppercase;
 		<form action="" method="POST" class="login-email">
 			<p class="login-text" style="font-size: 2rem; font-weight: 800;">Profile</p>
 			<div class="input-group">
-				<input type="text" placeholder="First name" name="first name" value="" >
+				<input type="text" placeholder="First name" name="first name" value="<?php echo $_SESSION['fname']; ?>" >
 			</div>
       <div class="input-group">
-				<input type="text" placeholder="Last name" name="last name" value="">
+				<input type="text" placeholder="Last name" name="last name" value="<?php echo $_SESSION['lname']; ?>">
 			</div>
       <div class="input-group">
-				<input type="text" placeholder="Email" name="Email" value="">
+				<input type="text" placeholder="Email" name="Email" value="<?php echo $_SESSION['email']; ?>">
 			</div>
       <div class="input-group">
-				<input type="text" placeholder="Mobile" name="mobile" value="" >
+				<input type="text" placeholder="Mobile" name="mobile" value="<?php echo $_SESSION['phonenumber']; ?>" >
 			</div>
       <div class="input-group">
-				<input type="Address" placeholder="Address" name="address" value="" >
+				<input type="Address" placeholder="Address" name="address" value="<?php echo $_SESSION['address']; ?>" >
 			</div>
       <div class="input-group">
-				<input type="text"  name="member" value="" >
+				<input type="text"  name="member" placeholder="member joined"  value="<?php echo $_SESSION['datejoined']; ?>" >
+			</div>
+      <div class="input-group">
+				<input type="text" placeholder="DOB" name="dob" value="<?php echo $_SESSION['dob']; ?>">
 			</div>
 			<div class="input-group">
-				<input type="password" placeholder="Password" name="password" value="">
+				<input type="password" placeholder="Password" name="password" value="<?php echo $user ;?>">
 			</div>
 			<div class="input-group">
 				<button name="Save" class="btn">Save</button>
