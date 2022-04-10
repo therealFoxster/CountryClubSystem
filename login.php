@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
 	$user = find_user($username);
 	if ($user && $password === $user['PasswordHash']) {
 		$_SESSION['username']=$username;
-		
+		$_SESSION['pass']=$_POST['password'];
 		header("Location: index.php");
 		
 		

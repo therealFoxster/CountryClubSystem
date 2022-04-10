@@ -27,11 +27,18 @@ $username = $_SESSION['username']; $user = null;
     $_SESSION['membershipid']=$user["MembershipId"];
     $_SESSION['membersince']=$user["MemberSince"];
     $_SESSION['usename']=$user["Username"];
+     }
+
+     if(isset($_POST['save'])&&$_POST['password']==$_POST['cpassword']) {
+      update_customer($_SESSION['usename'], $_POST['first name'],
+      $_POST['last name'], $_POST['Email'], $_POST['mobile'],
+      $_POST['address'], $_POST['dob'], $_POST['username'],
+      md5($_POST['password']));
+     
+    }
+    // else{die("Error: something is not right.");}
 
 
-
-
-  }
 ?>
 
 
@@ -215,10 +222,10 @@ text-transform: uppercase;
 				<input type="text" placeholder="Username" name="username" value="<?php echo $_SESSION['username']; ?>">
 			</div>
 			<div class="input-group">
-				<input type="password" placeholder="Password" name="password" value="">
+				<input type="text" placeholder="Password" name="password" value="<?php echo $_SESSION['pass']; ?>">
 			</div>
       <div class="input-group">
-				<input type="cpassword" placeholder="Confirm password" name="cpassword" value="">
+				<input type="text" placeholder="Confirm password" name="cpassword" value="<?php echo $_SESSION['pass']; ?>">
 			</div>
 			<div class="input-group">
 				<button name="Save" class="btn">Save</button>
