@@ -25,7 +25,12 @@ if (isset($_POST['submit'])) {
 	$user = find_user($username);
 	if ($user && $password === $user['PasswordHash']) {
 		$_SESSION['username']=$username;
-		header("Location: index.php");
+		if(isset($_SESSION['address'])==null){
+			header("Location: profile.php");
+		}
+		else{header("Location: index.php");}
+		
+		
 
 		switch ($user['AdminPrivilege']) {
 			case 0: // Customer
