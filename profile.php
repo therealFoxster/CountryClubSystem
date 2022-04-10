@@ -203,19 +203,22 @@ text-transform: uppercase;
 				<input type="text" placeholder="Email" name="Email" value="<?php echo $_SESSION['email']; ?>">
 			</div>
       <div class="input-group">
-				<input type="text" placeholder="Mobile" name="mobile" value="<?php echo $_SESSION['phonenumber']; ?>" >
+				<input type="text" placeholder="Phone number" name="mobile" value="<?php echo $_SESSION['phonenumber']; ?>" >
 			</div>
       <div class="input-group">
 				<input type="Address" placeholder="Address" name="address" value="<?php echo $_SESSION['address']; ?>" >
 			</div>
       <div class="input-group">
-				<input type="text"  name="member" placeholder="member joined"  value="<?php echo $_SESSION['datejoined']; ?>" >
-			</div>
-      <div class="input-group">
 				<input type="text" placeholder="DOB" name="dob" value="<?php echo $_SESSION['dob']; ?>">
 			</div>
+      <div class="input-group">
+				<input type="text" placeholder="Username" name="username" value="<?php echo $_SESSION['username']; ?>">
+			</div>
 			<div class="input-group">
-				<input type="password" placeholder="Password" name="password" value="<?php echo $user ;?>">
+				<input type="password" placeholder="Password" name="password" value="">
+			</div>
+      <div class="input-group">
+				<input type="cpassword" placeholder="Confirm password" name="cpassword" value="">
 			</div>
 			<div class="input-group">
 				<button name="Save" class="btn">Save</button>

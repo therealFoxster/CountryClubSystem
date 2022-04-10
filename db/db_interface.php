@@ -127,6 +127,12 @@ function find_employee_with_email($email) {
     else return null;
 }
 
+function find_employees_managed_by(int $manager_id) {
+    if ($employees = __find_records_in_table("Employee", "ManagerId = $manager_id"))
+        return $employees;
+    else return null;
+}
+
 /**
  * Removes an employee from the 'Employee' table using their ID
  *
@@ -216,6 +222,31 @@ function remove_customer(int $id) {
     __delete_from_table("Customer", "CustomerId = $id");
 }
 
+/**
+ * Updates a customer from the 'Customer' table using their username
+ *
+ * @param  string $username  The customer's current username (used for searching).
+ * @param  ?string $fname  The customer's updated first name (nullable).
+ * @param  ?string $lname  The customer's updated last name (nullable).
+ * @param  ?string $email  The customer's updated email (nullable).
+ * @param  ?string $phone  The customer's updated phone numer (nullable).
+ * @param  ?string $address  The customer's updated address (nullable).
+ * @param  ?string $dob  The customer's updated date of birth (nullable).
+ * @param  ?string $new_username  The customer's updated username (nullable).
+ * @param  ?string $password  The md5 hash of the customer's updated password (nullable).
+ * @return void
+ */
+function update_customer(string $username, ?string $fname = null, ?string $lname = null, ?string $email = null, ?int $phone = null, ?string $address = null, ?string $dob = null, ?string $new_username, ?string $password = null) {
+    if ($fname) __update_table("Customer", "Username = '$username'", "FName", $fname);
+    if ($lname) __update_table("Customer", "Username = '$username'", "LName", $lname);
+    if ($email) __update_table("Customer", "Username = '$username'", "Email", $email);
+    if ($phone) __update_table("Customer", "Username = '$username'", "PhoneNumber", $phone);
+    if ($address) __update_table("Customer", "Username = '$username'", "Address", $address);
+    if ($dob) __update_table("Customer", "Username = '$username'", "DOB", $dob);
+    if ($new_username) __update_table("User", "Username = '$username'", "Username", $new_username);
+    if ($password) __update_table("User", "Username = '$username'", "Password", $password);
+}
+
 ################
 ##### User #####
 ################
@@ -274,7 +305,7 @@ function add_restaurant_booking(string $email, string $date, ?string $time, ?int
  * @param  ?string $date  The date to base the search on (nullable)(format: yyyy-mm-dd, default: today's date).
  * @return $seats  The number of available seats.
  */
-function avail_seats_for_time(string $time, string $date = null) {
+function avail_seats_for_time(string $time, ?string $date = null) {
     if ($date === null) $date = date("Y-m-d");
     
     $total_seats = 100; $seats = 0;

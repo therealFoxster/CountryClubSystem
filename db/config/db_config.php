@@ -19,7 +19,8 @@ $db = db_connect();
 try {
     $db->exec($setup_script);
 } catch(PDOException $e) {
-    // println("Error while running setup script: $e");
+    err_log("Error while running setup script: $e", $this_file);
+} catch(Exception $e) {
     err_log("Error while running setup script: $e", $this_file);
 }
 
