@@ -54,7 +54,7 @@
                             if (isset($_SESSION['username'])) {
                                 echo "
                                 <li class='dropdown'>
-                                    <a id ='username' href='register.php'>{$_SESSION['username']}</a>
+                                    <a id ='username' href='#'>{$_SESSION['username']}</a>
                                     <div class='dropdown-content'>
                                         <a href='profile.php'>Profile</a>
                                         <a href='#'>Register</a>
