@@ -1,4 +1,15 @@
-<?php session_start(); ?>
+<?php require 'db/db_interface.php'; 
+session_start(); 
+if (isset($_SESSION['username'])) {
+  if (isset($_POST['facility']) && isset($_POST['date']) && isset($_POST['time'])) {
+    test_log($_POST['facility']);
+    test_log($_POST['date']);
+    test_log($_POST['time']);
+    test_log($_SESSION['username']);
+    add_booking($_POST['facility'], $_POST['date'], $_POST['time'], $_SESSION['username']);
+  }
+}
+?>
 
 <!DOCTYPE html>
 <html>
@@ -123,36 +134,57 @@
     </header>
   </div>
 
-  <div>
-    <form class="container"  method='post' action='booking.php'>
-      <center><h2 >Booking</h2></center>  </br>
-      <div  class="booking">
-        <label class='input-label'>Facility</label></br>
-        <select id='type' class='input-field' name='Type' required>
-          <!-- <option disabled hidden selected>--Select--</option> -->
-          <option value="Conference-Hall">Conference hall</option>
-          <option value="Meeting">Meeting room</option>
-          <option value="Gulf">Golf course</option>
-          <option value="Wedding">Clubhouse</option>
-        </select></br>
+  
+  <?php 
+    if (isset($_SESSION['username'])) {
+      $facilities = get_facilities();
+      $facility_opts = "";
+      foreach ($facilities as $facility) {
+        $facility_opts .= "<option value='{$facility['FacilityId']}'>{$facility['FacilityName']}</option>";
+      }
+      
+      $time_slots = get_time_slots();
+      $time_slot_opts = "";
+      foreach ($time_slots as $time_slot) {
+        $time_slot_opts .= "<option value='{$time_slot['TimeSlotId']}'> {$time_slot['StartTime']} - {$time_slot['EndTime']}</option>";
+      }
 
-        <label class='input-label' for="checkin" >Date</label></br>
-        <input class='input-field' type="date" id="checkin" name="Checkin" onchange="CompareDate(event);" required><br>
-                  
-        <label class='input-label' >Time slot</label></br>
-        <select id='time' class='input-field'  name='time'  onchange="select()" required >       
-          <!-- <option disabled hidden selected>--Select--</option> -->
-          <option value='1'> 9:00-12:00</option>
-          <option value='2'> 12:00-3:00 </option>
-          <option value='3'> 3:00-6:00 </option>
-        </select></br>
+      echo "
+      <div>
+        <form class='container'  method='post' action='booking.php'>
+          <center><h2 >Booking</h2></center>  </br>
+          <div  class='booking'>
+            <label class='input-label'>Facility</label></br>
+            <select id='facility' class='input-field' name='facility' required>
+              <!-- <option disabled hidden selected>--Select--</option> -->
+              $facility_opts
+            </select></br>
 
-        <button type='submit' class='btn'onclick="return confirm('Are you sure ,do you want to book this Event?')">Book</button>
-      </div>
-    </form>
-  </div>
+            <label class='input-label' for='checkin' >Date</label></br>
+            <input class='input-field' type='date' id='date' name='date' onchange='CompareDate(event);' required><br>
+                      
+            <label class='input-label' >Time slot</label></br>
+            <select id='time' class='input-field'  name='time'  onchange='select()' required >       
+              <!-- <option disabled hidden selected>--Select--</option> -->
+              $time_slot_opts
+            </select></br>
 
-  <hr style="height:1px;margin:0px;background: black">
+            <button type='submit' class='btn' onclick='return confirm('Are you sure you want to book this facility?')'>Book</button>
+          </div>
+        </form>
+      </div>";
+    } else {
+        echo "
+        <div class='container' style='height: 220px;'>
+          <center><h2>Become a member to book</h2></center>  </br>
+          <a href='register.php'><button class='btn'>Sign Up</button><br><br></a>
+          <a href='login.php'><button class='btn'>Log In</button></a>
+        </div>";
+    }
+  ?>
+  
+
+  <!-- <hr style="height:1px;margin:0px;background: black">
   <div class='footer'>
     <p style="margin:10px; float:left;">
       Terms | Privacy | SiteMap | FAQs | Cookie Statement
@@ -160,7 +192,7 @@
     <p style="margin:10px; float:right;">
       &copy; Country Club
     </p>
-  </div>
+  </div> -->
 
   <script>         
     function CompareDate(e) {    

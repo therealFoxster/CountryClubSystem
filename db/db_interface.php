@@ -377,6 +377,30 @@ function remove_restaurant_booking_with_email(string $email, string $date=null) 
     return __delete_from_table("RestaurantBooking", "CustomerEmail = '$email' AND BookedDate = '$date'");
 }
 
+####################
+##### Facility #####
+####################
+
+function get_facilities() {
+    return __find_records_in_table("Facility");
+}
+
+####################
+##### TimeSlot #####
+####################
+
+function get_time_slots() {
+    return __find_records_in_table("TimeSlot");
+}
+
+###################
+##### Booking #####
+###################
+
+function add_booking(int $facility_id, string $date, int $time_slot_id, string $username) {
+    __insert_into_table("Booking", [$facility_id, $date, $time_slot_id, $username], "FacilityId, Date, TimeSlotId, Username");
+}
+
 /**
  * TODOs
  * 
@@ -470,11 +494,11 @@ function __find_record_in_table(string $table_name, $condition) {
     }
 }
 
-function __find_records_in_table(string $table_name, $condition) {
+function __find_records_in_table(string $table_name, $condition = "true") {
     global $db, $this_file;
 
     try {
-        $q = $db->query("SELECT * FROM $table_name WHERE $condition");
+        $q = $db->query("SELECT DISTINCT * FROM $table_name WHERE $condition");
         $r = $q->fetchAll();
 
         if (!$r)

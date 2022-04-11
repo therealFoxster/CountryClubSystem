@@ -42,9 +42,40 @@ $memberships = [
 ]; 
 foreach ($memberships as $membership)
     try {
-        $db->exec("INSERT IGNORE INTO Membership (MembershipName, Price) VALUES ('$membership[0]', $membership[1])");
+        if (!$db->query("SELECT * FROM Membership WHERE MembershipName = '$membership[0]' AND Price = $membership[1]")->fetchAll())
+            $db->exec("INSERT IGNORE INTO Membership (MembershipName, Price) VALUES ('$membership[0]', $membership[1])");
     } catch (PDOException $e) {
         err_log("Error while setting up 'Membership' table: $e", $this_file);
+    }
+
+# Setting up Facility table
+$facilities = [
+    "Conference hall",
+    "Meeting room",
+    "Golf course",
+    "Clubhouse"
+];
+foreach ($facilities as $facility)
+    try {
+        if (!$db->query("SELECT * FROM Facility WHERE FacilityName = '$facility'")->fetchAll())
+            $db->exec("INSERT IGNORE INTO Facility (FacilityName) VALUES ('$facility');");
+    } catch (PDOException $e) {
+        err_log("Error while setting up 'Facility' table: $e", $this_file);
+    }
+
+# Setting up TimeSlot table
+$time_slots = [
+    ["09:00", "12:00"],
+    ["12:00", "15:00"],
+    ["15:00", "18:00"],
+    ["18:00", "21:00"],
+];
+foreach ($time_slots as $time_slot)
+    try {
+        if (!$db->query("SELECT * FROM TimeSlot WHERE StartTime = '$time_slot[0]' AND EndTime = '$time_slot[1]'")->fetchAll())
+            $db->exec("INSERT IGNORE INTO TimeSlot (StartTime, EndTime) VALUES ('$time_slot[0]', '$time_slot[1]');");
+    } catch (PDOException $e) {
+        err_log("Error while setting up 'TimeSlot' table: $e", $this_file);
     }
 
 function db_init() {

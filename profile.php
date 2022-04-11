@@ -29,9 +29,9 @@ $username = $_SESSION['username']; $user = null;
     $_SESSION['usename']=$user["Username"];
      }
 
-     if(isset($_POST['save'])&&$_POST['password']==$_POST['cpassword']) {
-      update_customer($_SESSION['usename'], $_POST['first name'],
-      $_POST['last name'], $_POST['Email'], $_POST['mobile'],
+    if(isset($_POST['Save'])&&$_POST['password']==$_POST['cpassword']) {
+      update_customer($_SESSION['username'], $_POST['first-name'],
+      $_POST['last-name'], $_POST['Email'], $_POST['mobile'],
       $_POST['address'], $_POST['dob'], $_POST['username'],
       md5($_POST['password']));
      
@@ -119,6 +119,8 @@ text-transform: uppercase;
   border: none;
   cursor: pointer;
   width: 100%;
+  height: 0;
+  line-height: 0;
 text-transform: uppercase;
   opacity: 0.9;
 }
@@ -201,10 +203,10 @@ text-transform: uppercase;
 		<form action="" method="POST" class="login-email">
 			<p class="login-text" style="font-size: 2rem; font-weight: 800;">Profile</p>
 			<div class="input-group">
-				<input type="text" placeholder="First name" name="first name" value="<?php echo $_SESSION['fname']; ?>" >
+				<input type="text" placeholder="First name" name="first-name" value="<?php echo $_SESSION['fname']; ?>" >
 			</div>
       <div class="input-group">
-				<input type="text" placeholder="Last name" name="last name" value="<?php echo $_SESSION['lname']; ?>">
+				<input type="text" placeholder="Last name" name="last-name" value="<?php echo $_SESSION['lname']; ?>">
 			</div>
       <div class="input-group">
 				<input type="text" placeholder="Email" name="Email" value="<?php echo $_SESSION['email']; ?>">
@@ -230,7 +232,6 @@ text-transform: uppercase;
 			<div class="input-group">
 				<button name="Save" class="btn">Save</button>
 			</div>
-
 		</form>
 	</div>
  
