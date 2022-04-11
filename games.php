@@ -1,52 +1,16 @@
-<?php 
-require 'db/db_interface.php'; 
-
-error_reporting(0);
-session_start();
-
-$__err="";
-if (isset($_SESSION['username'])) {
-    header("Location: login.php");
-}
-
-if (isset($_POST['submit'])) {
-	$fname = $_POST['fname'];
-	$lname = $_POST['lname'];
-	$username = $_POST['username'];
-	$email = $_POST['email'];
-	$password = md5($_POST['password']);
-	$cpassword = md5($_POST['cpassword']);
-
-	if (!find_user($username))
-		if (!find_customer_with_email($email))
-			if ($password == $cpassword) {
-				add_customer_with_email($fname, $lname, null, $email, $username, $password);
-				header("Location: login.php");
-			}
-			else $__err = "The passwords do not match.";
-		else $__err = "This email has already been used to register.";
-	else $__err = "This username is already taken.";
-
-}
-
-?>
-
-<!DOCTYPE html>
+<?php session_start(); ?>
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="images/country_club_icon.png" />
-    <link rel='stylesheet' type="text/css" href='./css/style.css'>
-    <link rel="stylesheet" type="text/css" href="./css/login_register.css">
+    <link rel='stylesheet' type="text/css" href='css/style.css'>
+    <link rel='style' href='style/event_ClubHouse.css'>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-
-    <title>Register</title>
 </head>
 
 <body>
-
     <div id='navbar' class='home-body-nav'>
         <header>
             <section>
@@ -109,7 +73,7 @@ if (isset($_POST['submit'])) {
                             if (isset($_SESSION['username'])) {
                                 echo "
                                 <li class='dropdown'>
-                                    <a id ='username' href='#'>{$_SESSION['username']}</a>
+                                    <a id ='username' href='register.php'>{$_SESSION['username']}</a>
                                     <div class='dropdown-content'>
                                         <a href='profile.php'>Profile</a>
                                         <a href='#'>Register</a>
@@ -126,36 +90,71 @@ if (isset($_POST['submit'])) {
                 </nav>
             </section>
         </header>
+
+    </div>
+    <div class="header_games">
+        <div class="header_text">
+            <span class="header_heading_text">GAMES</span>
+            <span class="header_subtitle_text">GAME ON</span>
+        </div>
     </div>
 
-    <div class="register-page">
-        <div class="container">
-            <form action="" method="POST" class="login-email">
-                <p class="login-text" style="font-size: 2rem; font-weight: 800;">Register</p>
-                <div class="input-group">
-                    <input type="text" placeholder="First name" name="fname" value="<?php echo $fname ?>" required>
+    <div class='intro'>
+        <p>
+            Our club provides the facility to play, practice and train for golf and tennis. You can play games at our
+            facility in a first-come first-serve basis. Reserve your game beforehand for smooth gameplay.
+        </p>
+    </div>
+
+    <div class='services'>
+
+        <div id="book-cards">
+            <div class="product-details">
+                <h1>GOLF COURSE RESERVATION</h1>
+                <p class="information">
+                    Reserve your place at our prestiges golf course. Booking your time slot gives you priority at our
+                    golf course. <br />
+                <ul>
+                    <li>Course Length: 6,261 yards</li>
+                    <li>Par: 71</li>
+                    <li>Slope: 120</li>
+                    <li>Time: 9 AM - 10 PM</li>
+                </ul>
+                </p>
+
+                <div class="control">
+                    <button class="btn">
+                        <span class="buy"><a class='readmore' href="booking.php">BOOK NOW</a></span>
+                    </button>
                 </div>
-                <div class="input-group">
-                    <input type="text" placeholder="Last name" name="lname" value="<?php echo $lname ?>" required>
+            </div>
+
+            <div class="product-image">
+                <img src="./images/big_portfolio_item_2.png" alt="" width="600px">
+            </div>
+        </div>
+
+        <div id="book-cards">
+            <div class="product-details">
+                <h1>TENNIS COURT RESERVATION</h1>
+                <p class="information">
+                    Reserve your place at our tennis court. Booking your time slot gives you priority at
+                    our tennis court. <br />
+                <ul>
+                    <li>Time: 9 AM - 10 PM</li>
+                </ul>
+                </p>
+
+                <div class="control">
+                    <button class="btn">
+                        <span class="buy"><a class='readmore' href="booking.php">BOOK NOW</a></span>
+                    </button>
                 </div>
-                <div class="input-group">
-                    <input type="text" placeholder="Username" name="username" value="<?php echo $username ?>" required>
-                </div>
-                <div class="input-group">
-                    <input type="email" placeholder="Email" name="email" value="<?php echo $email ?>" required>
-                </div>
-                <div class="input-group">
-                    <input type="password" placeholder="Password" name="password" value="" required>
-                </div>
-                <div class="input-group">
-                    <input type="password" placeholder="Confirm password" name="cpassword" value="" required>
-                </div>
-                <div class="input-group">
-                    <button name="submit" class="btn">Continue</button>
-                </div>
-                <p class="login-register-text">Have an account? Log in <a href="login.php">here</a>.</p>
-                <p><?php print $__err;?></p>
-            </form>
+            </div>
+
+            <div class="product-image">
+                <img src="./images/amenities_practice.jpg" alt="" width="600px">
+            </div>
         </div>
     </div>
 

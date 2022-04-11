@@ -52,8 +52,9 @@ foreach ($memberships as $membership)
 $facilities = [
     "Conference hall",
     "Meeting room",
+    "Clubhouse",
     "Golf course",
-    "Clubhouse"
+    "Tennis course",
 ];
 foreach ($facilities as $facility)
     try {
