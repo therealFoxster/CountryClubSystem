@@ -1,8 +1,6 @@
 /* DEFAULT STYLES */
 
     * {
-        text-decoration: none;
-        list-style: none;
         margin: 0px;
         padding: 0px;
     }
@@ -35,6 +33,8 @@
         text-transform: uppercase;
         color: #df2935;
         padding: 20px 0px;
+        text-decoration: none;
+        list-style: none;
     }
 
     nav {
@@ -45,10 +45,12 @@
     nav ul {
         display: table;
         float: right;
+        list-style: none;
     }
 
     nav ul li {
         float: left;
+        list-style: none;
     }
 
     nav ul li a {
@@ -56,12 +58,14 @@
         font-size: 18px;
         padding: 25px 20px;
         display: inline-block;
+        text-decoration: none;
     }
 
     nav ul li a:hover {
         background-color: #df2935;
         color: #ffffff;
         transition: all 0.5s ease 0s;
+        text-decoration: none;
     }
 
 
@@ -87,6 +91,23 @@
     .header_about_us {
         background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_aboutus.jpg");
         background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_aboutus.jpg");
+        position: relative;
+        text-align: center;
+        color: white;
+        width: 100%;
+        height: 70%;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+
+    .header_games {
+        background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_games.jpg");
+        background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/header_games.jpg");
         position: relative;
         text-align: center;
         color: white;
@@ -278,45 +299,36 @@
         font-size: xx-large;
         font-weight: 100;
     }
+/* ADDRESS AND CONTACT STYLES */
 
-/* HOME - SERVICES STYLES */
-
-    .services {
-        padding: 50px;
-        background-color: white;
-    }
-
-    .services_three {
+    .last {
         display: flex;
+        margin-bottom: 40px;
     }
 
-    .services_container {
-        position: relative;
+    .dest {
+        padding: 40px 50px 10px 50px;
+        margin-left: 200px;
     }
 
-    .services_images {
-        display: block;
-        margin: 30px;
-        padding: 10px 6px;
-    }
-
-    .services_images img {
-        border: 1px solid black;
-        box-shadow: 0 0 20px 0 gray;
-        object-fit: cover;
-    }
-
-    .services_text {
-        color: black;
-        font-size: 24px;
-        font-weight: 500;
+    .vertical {
+        border-left: 1px solid black;
+        margin-top: 50px;
+        height: 150px;
         position: absolute;
-        top: 92%;
-        left: 50%;
-        -webkit-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-        text-align: center;
+        left: 52%;
+    }
+
+    .contact {
+        padding: 40px 50px 10px 50px;
+        margin-left: 400px;
+        margin-top: 20px;
+    }
+
+/* FOOTER STYLES */
+
+    .footer {
+        background-color: white;
     }
 
 /* ABOUT US - HISTORY */
@@ -357,72 +369,290 @@
         margin-top: 20px;
     }
 
-/* More Amenities Styles */
+/* HOME/AMENITIES - SERVICES STYLES */
 
-.home-image {
-    margin-left: 3px;
-    margin-top: 3px;
-    border: 1px solid black;
-    padding: 5px 5px 5px 5px;
-    background: gray;
-}
+    .services {
+        padding: 50px;
+        background-color: white;
+    }
 
-.split-left {
-    width: 60%;
-    left: 0;
-    position: absolute;
-    overflow-x: hidden;
-}
+    .service-portfolio-home {
+        width: 100%;
+        height: 800px;
+        background-color: white;
+    }
 
-.split-right {
-    width: 45%;
-    right: 0;
-    margin: 20px 0px;
-    position: absolute;
-    overflow-x: hidden;
-}
+    .service-portfolio-amenities {
+        width: 100%;
+        height: 450px;
+        background-color: white;
+    }
 
-.list li {
-    font-size: 24px;
-}
+    .service-portfolio-item .thumb {
+        position: relative;
+    }
 
-.list p {
-    margin-bottom: 10px;
-}
+    .service-portfolio-item .image img {
+        opacity: 1;
+        width: 420px;
+        height: 360px;
+        backface-visibility: hidden;
+        object-fit: cover;
+        background-size: cover;
+    }
+
+    .service-portfolio-item .middle-text {
+        opacity: 0;
+        position: absolute;
+        top: 55%;
+        left: 50%;
+        transition: .5s ease;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    .service-portfolio-item:hover .service-image {
+        opacity: 0.3;
+    }
+
+    .service-portfolio-item:hover .middle-text {
+        opacity: 1;
+    }
+
+    .service-portfolio-item .visit-link {
+        background-color: #df2935;
+        color: white;
+        font-size: 16px;
+        padding: 16px 32px;
+    }
+
+    .service-portfolio-home .service-portfolio-item {
+        margin: 15px 0px;
+    }
+
+    .service-portfolio-home .service-portfolio-item h1 {
+        position: relative;
+        font-size: 22px;
+        text-transform: uppercase;
+        color: #fff;
+        display: inline-block;
+        padding-left: 20px;
+        line-height: 15px;
+        letter-spacing: 0.5px;
+        top: 350px;
+    }
+
+    .service-portfolio-amenities .service-portfolio-item {
+        margin: 15px 0px;
+    }
+
+    .service-portfolio-amenities .service-portfolio-item h1 {
+        position: relative;
+        font-size: 22px;
+        text-transform: uppercase;
+        color: #fff;
+        display: inline-block;
+        padding-left: 20px;
+        line-height: 15px;
+        letter-spacing: 0.5px;
+        top: 350px;
+    }
+
+/* CLUBHOUSE/EVENTS CARDS STYLE */
+
+    #book-cards {
+        box-shadow: 0 15px 30px 1px grey;
+        background: rgba(255, 255, 255, 0.90);
+        text-align: center;
+        border-radius: 5px;
+        overflow: hidden;
+        margin: 5em auto;
+        height: 350px;
+        width: 700px;
+    }
+
+    .product-details {
+        position: relative;
+        text-align: left;
+        overflow: hidden;
+        padding: 30px;
+        height: 100%;
+        float: left;
+        width: 40%;
+    }
+
+    #book-cards .product-details h1 {
+        display: inline-block;
+        position: relative;
+        font-size: 30px;
+        margin: 0;
+    }
+
+    #book-cards .product-details>p {
+        text-align: left;
+        font-size: 16px;
+    }
+
+    #book-cards .product-details>ul>li {
+        margin-left: 20px;
+    }
+
+    .control {
+        position: absolute;
+        bottom: 20%;
+        left: 22.8%;
+        margin-left: 30px;
+    }
+
+    .btn {
+        transform: translateY(0px);
+        transition: 0.3s linear;
+        background: #809fff;
+        border-radius: 5px;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        outline: none;
+        border: none;
+        color: #eee;
+        padding: 0;
+        margin: 0;
+    }
+
+    .btn:hover {
+        background: #1a66ff;
+    }
+
+    .btn span {
+        transition: transform 0.3s;
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 0.8 em;
+        margin: 0;
+    }
+
+    .btn span>a {
+        text-decoration: none;
+        color: white;
+    }
+
+    .btn .buy {
+        z-index: 3;
+        font-weight: bolder;
+    }
+
+    .product-image {
+        transition: all 0.3s ease-out;
+        float: right;
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+        width: 45%;
+    }
+
+    #container img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .product-image:hover img {
+        transition: all 0.3s ease-out;
+    }
+
+    .product-image:hover img {
+        transform: scale(1.2, 1.2);
+    }
+
+/* GALLERY - GRID STYLES */
+
+    .portfolio-item .thumb {
+        position: relative;
+    }
+    
+    .portfolio-item .image img {
+        width: 466px;
+        height: 360px;
+        object-fit: cover;
+        background-size: cover;
+    }
+    
+    .grid-portfolio .portfolio-item {
+        margin: 15px 0px;
+    }
+    
+    .portfolio-item .hover-effect .hover-content {
+        position: absolute;
+        text-align: left;
+        width: 100%;
+        bottom: 5px;
+        left: 0;
+    }
+    
+    .grid-portfolio .portfolio-item h1 {
+        position: relative;
+        font-size: 22px;
+        text-transform: uppercase;
+        color: #fff;
+        display: inline-block;
+        padding-left: 20px;
+        line-height: 15px;
+        transform: translateY(25px);
+        transition: .5s ease-in-out;
+        letter-spacing: 0.5px;
+    }
+    
+    .grid-portfolio .portfolio-item em {
+        font-style: normal;
+        font-weight: 200;
+    }
+    
+    .grid-portfolio .portfolio-item:hover h1 {
+        transform: translateY(0);
+    }
+    
+    .grid-portfolio .portfolio-item p {
+        padding-left: 20px;
+        font-weight: 300 !important;
+        letter-spacing: 0.5px;
+        font-size: 14px;
+        color: #fff;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: .5s ease-in-out;
+        text-transform: uppercase;
+    }
+    
+    .grid-portfolio .portfolio-item:hover p {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .grid-portfolio .load-more-button {
+        margin-top: 15px;
+    }
+    
+    .grid-portfolio .load-more-button a {
+        width: 100%;
+        height: 80px;
+        display: inline-block;
+        text-align: center;
+        line-height: 80px;
+        font-size: 15px;
+        text-transform: uppercase;
+        text-decoration: none;
+        letter-spacing: 1px;
+        color: #fff;
+        background-color: #313131;
+        transition: all 0.5s;
+    }
+    
+    .grid-portfolio .load-more-button a:hover {
+        color: rgba(250, 250, 250, 0.5);
+    }
 
 
-/* Address and Contact Styles */
-
-.last {
-    display: flex;
-    margin-bottom: 40px;
-}
-
-.dest {
-    padding: 40px 50px 10px 50px;
-    margin-left: 200px;
-}
-
-.vertical {
-    border-left: 1px solid black;
-    margin-top: 50px;
-    height: 150px;
-    position: absolute;
-    left: 52%;
-}
-
-.contact {
-    padding: 40px 50px 10px 50px;
-    margin-left: 400px;
-    margin-top: 20px;
-}
-
-
-/* Footer Styles */
-
-.footer {
-    background-color: white;
-}
+/*  */
 
 .black {
     background: black;
