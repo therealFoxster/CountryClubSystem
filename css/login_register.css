@@ -105,7 +105,7 @@
 }
 
 .container .login-email .input-group input:focus, .container .login-email .input-group input:valid {
-    border-color: #5846e4;
+    border-color: #6c5ce7;
 }
 
 .container .login-email .input-group .btn {
@@ -114,7 +114,7 @@
     padding: 15px 20px;
     text-align: center;
     border: none;
-    background: #5846e4 ;
+    background: #6c5ce7 ;
     outline: none;
     border-radius: 30px;
     font-size: 1.2rem;
@@ -125,7 +125,7 @@
 
 .container .login-email .input-group .btn:hover {
     /* transform: translateY(-5px); */
-    background: #6c5ce7;
+    background: #5846e4;
 }
 
 .login-register-text {
@@ -135,7 +135,7 @@
 
 .login-register-text a {
     text-decoration: none;
-    color: #6c5ce7;
+    color: #5846e4;
 }
 
 @media (max-width: 430px) {

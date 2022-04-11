@@ -11,7 +11,7 @@ session_start();
 
 
 
-    <title>Country Club</title>
+    <title>Practice</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="images/country_club_icon.png" />
     <link rel='stylesheet' type="text/css" href='css/style.css'>
@@ -22,41 +22,61 @@ session_start();
 <body>
     <div id='navbar' class='home-body-nav'>
         <header>
-        <section>
+            <section>
                 <a href="index.php" id="logo" target="_self">Country Club</a>
                 <nav>
                     <ul>
                         <li><a href="index.php">Home</a></li>
                         <li><a href="aboutus.php">About Us</a></li>
+                        <li><a href="games.php">Games</a></li>
                         <li><a href="amenities.php">Amenities</a></li>
                         <li><a href="gallery.php">Gallery</a></li>
                         <li><a href="event.php">Events</a></li>
                         <li><a href="contact.php">Contact</a></li>
-                        
-                        <style> /* Username hover dropdown */
-                            .dropdown {position: relative; display: inline-block;}
-                            .dropdown a {color: #df2935;}
-                            
-                            .dropdown-content {
-                                display: none;
-                                position: absolute;
-                                background-color: #f1f1f1;
-                                min-width: 160px;
-                                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-                                z-index: 1;
-                            }
-                            
-                            .dropdown-content a {
-                                color: black;
-                                padding: 12px 16px;
-                                text-decoration: none;
-                                display: block;
-                            }
-                            
-                            .dropdown-content a:hover {background-color: #bbb;}
-                            .dropdown-content #logout:hover {background-color: red;}
-                            .dropdown:hover .dropdown-content {display: block;}
-                            .dropdown:hover > a {background-color: #df2935; color: white;}
+
+                        <style>
+                        /* Username hover dropdown */
+                        .dropdown {
+                            position: relative;
+                            display: inline-block;
+                        }
+
+                        .dropdown a {
+                            color: #df2935;
+                        }
+
+                        .dropdown-content {
+                            display: none;
+                            position: absolute;
+                            background-color: #f1f1f1;
+                            min-width: 160px;
+                            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                            z-index: 1;
+                        }
+
+                        .dropdown-content a {
+                            color: black;
+                            padding: 12px 16px;
+                            text-decoration: none;
+                            display: block;
+                        }
+
+                        .dropdown-content a:hover {
+                            background-color: #bbb;
+                        }
+
+                        .dropdown-content #logout:hover {
+                            background-color: red;
+                        }
+
+                        .dropdown:hover .dropdown-content {
+                            display: block;
+                        }
+
+                        .dropdown:hover>a {
+                            background-color: #df2935;
+                            color: white;
+                        }
                         </style>
                         <?php
                             if (isset($_SESSION['username'])) {
@@ -91,7 +111,11 @@ session_start();
     <div class='intro'>
         <p>
             Members can prebook golf course and tennis courts beforehand for practice games. Booking should be done at
-            least a day prior and is given out depending on the availability. Contact us for more details.
+            least a day prior and is given out depending on the availability. <a href="./contact.php"
+                style="text-decoration:none; font-weight:400; color: #df2935">Contact
+                us</a> for
+            more
+            details.
         </p>
     </div>
 
