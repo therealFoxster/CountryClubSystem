@@ -26,19 +26,16 @@ $username = $_SESSION['username']; $user = null;
     $_SESSION['datejoined']=$user["DateJoined"];
     $_SESSION['membershipid']=$user["MembershipId"];
     $_SESSION['membersince']=$user["MemberSince"];
-    $_SESSION['usename']=$user["Username"];
+    $_SESSION['username']=$user["Username"];
      }
 
-     if(isset($_POST['save'])&&$_POST['password']==$_POST['cpassword']) {
-      update_customer($_SESSION['usename'], $_POST['first name'],
+     if(isset($_POST['Save'])&&$_POST['password']==$_POST['cpassword']) {
+      update_customer($_SESSION['username'], $_POST['first name'],
       $_POST['last name'], $_POST['Email'], $_POST['mobile'],
       $_POST['address'], $_POST['dob'], $_POST['username'],
       md5($_POST['password']));
-     
     }
     // else{die("Error: something is not right.");}
-
-
 ?>
 
 
