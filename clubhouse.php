@@ -88,29 +88,8 @@
   </div>
 
   <div class='services'>
-    <div class='services_container'>
-      <div class='services_three'>
-        <div class='hotel-image-detail'>
-          <img class='img' src='images/golf-yacht-club.jpg' alt='Image Error' width='350px' height='200px'>
-          <h2> Gulf Course Reservations </h2>
-          <p>Book your piority time slot for our par 72, 6995 yards Gulf course. </p>
-          <span>CulfCourse</span><br>
-          <span>par 72 - 6955 yards</span><br>
-          <span>6am - 10pm everyday</span><br>
-          <p><a class='readmore' href="booking.php">BOOK NOW</a></p>
-        </div>
-        <div class='hotel-image-detail'>
-          <img class='img' src='images/clubhouse_Dinning.jpg' alt='Image Error' width='350px' height='200px'>
-          <h2>Dinning Reservations</h2>
-          <p> Book a table in one of our prestigious dinning options and enjoy a 5 star experience provided by are
-            resident celebrity chefs. </span><br>
-            <span style='text-align: center'>up to 12 persons per table</span><br>
-            <span style='text-align: center'>Capacity - 250</span><br>
-          <p><a class='readmore' href="booking.php">BOOK NOW</a></p>
-        </div>
-      </div>
-    </div>
-  </div>.php
+
+  </div>
 
   <hr style="height:1px;margin:0px;background: black">
   <div class='footer'>

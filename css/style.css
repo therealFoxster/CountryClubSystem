@@ -278,45 +278,36 @@
         font-size: xx-large;
         font-weight: 100;
     }
+/* ADDRESS AND CONTACT STYLES */
 
-/* HOME - SERVICES STYLES */
-
-    .services {
-        padding: 50px;
-        background-color: white;
-    }
-
-    .services_three {
+    .last {
         display: flex;
+        margin-bottom: 40px;
     }
 
-    .services_container {
-        position: relative;
+    .dest {
+        padding: 40px 50px 10px 50px;
+        margin-left: 200px;
     }
 
-    .services_images {
-        display: block;
-        margin: 30px;
-        padding: 10px 6px;
-    }
-
-    .services_images img {
-        border: 1px solid black;
-        box-shadow: 0 0 20px 0 gray;
-        object-fit: cover;
-    }
-
-    .services_text {
-        color: black;
-        font-size: 24px;
-        font-weight: 500;
+    .vertical {
+        border-left: 1px solid black;
+        margin-top: 50px;
+        height: 150px;
         position: absolute;
-        top: 92%;
-        left: 50%;
-        -webkit-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-        text-align: center;
+        left: 52%;
+    }
+
+    .contact {
+        padding: 40px 50px 10px 50px;
+        margin-left: 400px;
+        margin-top: 20px;
+    }
+
+/* FOOTER STYLES */
+
+    .footer {
+        background-color: white;
     }
 
 /* ABOUT US - HISTORY */
@@ -357,72 +348,189 @@
         margin-top: 20px;
     }
 
-/* More Amenities Styles */
+/* HOME/AMENITIES - SERVICES STYLES */
 
-.home-image {
-    margin-left: 3px;
-    margin-top: 3px;
-    border: 1px solid black;
-    padding: 5px 5px 5px 5px;
-    background: gray;
-}
+    .services {
+        padding: 50px;
+        background-color: white;
+    }
 
-.split-left {
-    width: 60%;
-    left: 0;
-    position: absolute;
-    overflow-x: hidden;
-}
+    .service-portfolio-home {
+        width: 100%;
+        height: 800px;
+        background-color: white;
+    }
 
-.split-right {
-    width: 45%;
-    right: 0;
-    margin: 20px 0px;
-    position: absolute;
-    overflow-x: hidden;
-}
+    .service-portfolio-amenities {
+        width: 100%;
+        height: 450px;
+        background-color: white;
+    }
 
-.list li {
-    font-size: 24px;
-}
+    .service-portfolio-item .thumb {
+        position: relative;
+    }
 
-.list p {
-    margin-bottom: 10px;
-}
+    .service-portfolio-item .image img {
+        opacity: 1;
+        width: 420px;
+        height: 360px;
+        transition: .5s ease;
+        backface-visibility: hidden;
+        object-fit: cover;
+        background-size: cover;
+    }
+
+    .service-portfolio-item .middle-text {
+        opacity: 0;
+        position: absolute;
+        top: 55%;
+        left: 45%;
+        transition: .5s ease;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    .service-portfolio-item:hover .service-image {
+        opacity: 0.3;
+    }
+
+    .service-portfolio-item:hover .middle-text {
+        opacity: 1;
+    }
+
+    .service-portfolio-item .visit-link {
+        background-color: #df2935;
+        color: white;
+        font-size: 16px;
+        padding: 16px 32px;
+    }
+
+    .service-portfolio-home .service-portfolio-item {
+        margin: 15px 0px;
+    }
+
+    .service-portfolio-home .service-portfolio-item h1 {
+        position: relative;
+        font-size: 22px;
+        text-transform: uppercase;
+        color: #fff;
+        display: inline-block;
+        padding-left: 20px;
+        line-height: 15px;
+        letter-spacing: 0.5px;
+        top: 350px;
+    }
+
+    .service-portfolio-amenities .service-portfolio-item {
+        margin: 15px 0px;
+    }
+
+    .service-portfolio-amenities .service-portfolio-item h1 {
+        position: relative;
+        font-size: 22px;
+        text-transform: uppercase;
+        color: #fff;
+        display: inline-block;
+        padding-left: 20px;
+        line-height: 15px;
+        letter-spacing: 0.5px;
+        top: 350px;
+    }
+
+/* CLUBHOUSE/EVENTS CARDS STYLE */
 
 
-/* Address and Contact Styles */
+/* GALLERY - GRID STYLES */
 
-.last {
-    display: flex;
-    margin-bottom: 40px;
-}
+    .portfolio-item .thumb {
+        position: relative;
+    }
+    
+    .portfolio-item .image img {
+        width: 466px;
+        height: 360px;
+        object-fit: cover;
+        background-size: cover;
+    }
+    
+    .grid-portfolio .portfolio-item {
+        margin: 15px 0px;
+    }
+    
+    .portfolio-item .hover-effect .hover-content {
+        position: absolute;
+        text-align: left;
+        width: 100%;
+        bottom: 5px;
+        left: 0;
+    }
+    
+    .grid-portfolio .portfolio-item h1 {
+        position: relative;
+        font-size: 22px;
+        text-transform: uppercase;
+        color: #fff;
+        display: inline-block;
+        padding-left: 20px;
+        line-height: 15px;
+        transform: translateY(25px);
+        transition: .5s ease-in-out;
+        letter-spacing: 0.5px;
+    }
+    
+    .grid-portfolio .portfolio-item em {
+        font-style: normal;
+        font-weight: 200;
+    }
+    
+    .grid-portfolio .portfolio-item:hover h1 {
+        transform: translateY(0);
+    }
+    
+    .grid-portfolio .portfolio-item p {
+        padding-left: 20px;
+        font-weight: 300 !important;
+        letter-spacing: 0.5px;
+        font-size: 14px;
+        color: #fff;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: .5s ease-in-out;
+        text-transform: uppercase;
+    }
+    
+    .grid-portfolio .portfolio-item:hover p {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .grid-portfolio .load-more-button {
+        margin-top: 15px;
+    }
+    
+    .grid-portfolio .load-more-button a {
+        width: 100%;
+        height: 80px;
+        display: inline-block;
+        text-align: center;
+        line-height: 80px;
+        font-size: 15px;
+        text-transform: uppercase;
+        text-decoration: none;
+        letter-spacing: 1px;
+        color: #fff;
+        background-color: #313131;
+        transition: all 0.5s;
+    }
+    
+    .grid-portfolio .load-more-button a:hover {
+        color: rgba(250, 250, 250, 0.5);
+    }
 
-.dest {
-    padding: 40px 50px 10px 50px;
-    margin-left: 200px;
-}
 
-.vertical {
-    border-left: 1px solid black;
-    margin-top: 50px;
-    height: 150px;
-    position: absolute;
-    left: 52%;
-}
-
-.contact {
-    padding: 40px 50px 10px 50px;
-    margin-left: 400px;
-    margin-top: 20px;
-}
-
-
-/* Footer Styles */
-
-.footer {
-    background-color: white;
-}
+/*  */
 
 .black {
     background: black;

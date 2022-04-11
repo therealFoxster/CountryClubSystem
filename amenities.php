@@ -7,7 +7,6 @@
     <link rel="shortcut icon" type="image/x-icon" href="images/country_club_icon.png" />
     <link rel='stylesheet' type="text/css" href='css/style.css'>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/templatemo-style.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 </head>
 
@@ -101,7 +100,10 @@
                                     </div>
                                 </div>
                                 <div class="image">
-                                    <img src="images/amenities_clubhouse.jpg">
+                                    <img src="images/amenities_clubhouse.jpg" alt="clubhouse" class="service-image">
+                                    <div class="middle-text">
+                                        <div class="visit-link">Visit Link</div>
+                                    </div>          
                                 </div>
                             </div>
                         </a>
@@ -117,7 +119,10 @@
                                     </div>
                                 </div>
                                 <div class="image">
-                                    <img src="images/amenities_dining.jpg">
+                                    <img src="images/amenities_dining.jpg" alt="dining" class="service-image">
+                                    <div class="middle-text">
+                                        <div class="visit-link">Visit Link</div>
+                                    </div>          
                                 </div>
                             </div>
                         </a>
@@ -133,7 +138,10 @@
                                     </div>
                                 </div>
                                 <div class="image">
-                                    <img src="images/amenities_trainer.jpg">
+                                    <img src="images/amenities_trainer.jpg" alt="trainer" class="service-image">
+                                    <div class="middle-text">
+                                        <div class="visit-link">Visit Link</div>
+                                    </div>          
                                 </div>
                             </div>
                         </a>

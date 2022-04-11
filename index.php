@@ -7,11 +7,11 @@
     <link rel="shortcut icon" type="image/x-icon" href="images/country_club_icon.png" />
     <link rel='stylesheet' type="text/css" href='./css/style.css'>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/templatemo-style.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 </head>
 
 <body>
+    
     <div id='navbar' class='home-body-nav'>
         <header>
         <section>
@@ -92,7 +92,7 @@
 
     <div class='services'>
 
-        <h1>SERVICES</h1>
+        <h1>OUR SERVICES</h1>
 
         <div class="service-portfolio-home" id="portfolio">
             <div class="container">
