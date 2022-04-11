@@ -77,7 +77,7 @@
                                     <a id ='username' href='#'>{$_SESSION['username']}</a>
                                     <div class='dropdown-content'>
                                         <a href='profile.php'>Profile</a>
-                                        <a href='#'>Register</a>
+                                        <a href='adminview.php'>Registered game</a>
                                         <a href='logout.php' id='logout'>Log Out</a>
                                     </div>
                                 </li>";
