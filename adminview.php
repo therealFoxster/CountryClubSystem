@@ -14,82 +14,88 @@
 
 <body>
     <div id='navbar' class='home-body-nav'>
-        <header>
-        <section>
-                <a href="index.php" id="logo" target="_self">Country Club</a>
-                <nav>
-                    <ul>
-                        <li><a href="index.php">Home</a></li>
-                        <li><a href="aboutus.php">About Us</a></li>
-                        <li><a href="amenities.php">Amenities</a></li>
-                        <li><a href="gallery.php">Gallery</a></li>
-                        <li><a href="event.php">Events</a></li>
-                        <li><a href="contact.php">Contact</a></li>
-                        
-                        <style> /* Username hover dropdown */
-                            .dropdown {position: relative; display: inline-block;}
-                            .dropdown a {color: #df2935;}
+            <header>
+      <section>
+        <a href="index.php" id="logo" target="_self">Country Club</a>
+          <nav>
+            <ul>
+              <li><a href="index.php">Home</a></li>
+              <li><a href="aboutus.php">About Us</a></li>
+              <li><a href="games.php">Games</a></li>
+              <li><a href="amenities.php">Amenities</a></li>
+              <li><a href="gallery.php">Gallery</a></li>
+              <li><a href="event.php">Events</a></li>
+              <li><a href="contact.php">Contact</a></li>
 
-                            table, th, td {
-  border:1px solid black;
-}
+              <style>
+              /* Username hover dropdown */
+              .dropdown {
+                position: relative;
+                display: inline-block;
+              }
 
-.button {
-  background-color: #4CAF50;
-  border: none;
-  color: white;
-  /* padding: 15px 32px; */
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  margin: 2px 2px;
-  cursor: pointer;
-}
+              .dropdown a {
+                color: #df2935;
+              }
 
+              .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #f1f1f1;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                z-index: 1;
+              }
 
-                            .dropdown-content {
-                                display: none;
-                                position: absolute;
-                                background-color: #f1f1f1;
-                                min-width: 160px;
-                                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-                                z-index: 1;
-                            }
-                            
-                            .dropdown-content a {
-                                color: black;
-                                padding: 12px 16px;
-                                text-decoration: none;
-                                display: block;
-                            }
-                            
-                            .dropdown-content a:hover {background-color: #bbb;}
-                            .dropdown-content #logout:hover {background-color: red;}
-                            .dropdown:hover .dropdown-content {display: block;}
-                            .dropdown:hover > a {background-color: #df2935; color: white;}
-                        </style>
-                        <?php
-                            if (isset($_SESSION['username'])) {
-                                echo "
-                                <li class='dropdown'>
-                                    <a id ='username' href='#'>{$_SESSION['username']}</a>
-                                    <div class='dropdown-content'>
-                                        <a href='profile.php'>Profile</a>
-                                        <a href='.php'>Register</a>
-                                        <a href='logout.php' id='logout'>Log Out</a>
-                                    </div>
-                                </li>";
-                            } else {
-                                echo '
-                                <li><a href="login.php">Log In</a></li>
-                                <li><a href="register.php">Sign Up</a></li>';
-                            }
-                        ?>
-                    </ul>
-                </nav>
-            </section>
-        </header>
+              .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+              }
+
+              .dropdown-content a:hover {
+                background-color: #bbb;
+              }
+
+              .dropdown-content #logout:hover {
+                background-color: red;
+              }
+
+              .dropdown:hover .dropdown-content {
+                display: block;
+              }
+
+              .dropdown:hover>a {
+                background-color: #df2935;
+                color: white;
+              }
+              </style>
+              
+              <?php
+              if (isset($_SESSION['username'])) {
+                echo "
+                <li class='dropdown'>
+                  <a id ='username' href='profile.php'>{$_SESSION['username']}</a>
+                  <div class='dropdown-content'>
+                    <a href='profile.php'>Profile</a>";
+                if ($_SESSION['pri']) {
+                  echo "<a href='adminview.php'>Manage bookings</a>";
+                }
+                echo "
+                    <a href='logout.php' id='logout'>Log Out</a>
+                  </div>
+                </li>";
+              } else {
+                echo '
+                <li><a href="login.php">Log In</a></li>
+                <li><a href="register.php">Sign Up</a></li>';
+              }
+              ?>
+            </ul>
+          </nav>
+      </section>
+    </header>
 
       
         <div class="container">

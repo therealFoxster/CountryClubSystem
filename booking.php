@@ -172,11 +172,12 @@ if (isset($_SESSION['username'])) {
               if (isset($_SESSION['username'])) {
                 echo "
                 <li class='dropdown'>
-                  <a id ='username' href='register.php'>{$_SESSION['username']}</a>
+                  <a id ='username' href='profile.php'>{$_SESSION['username']}</a>
                   <div class='dropdown-content'>
                     <a href='profile.php'>Profile</a>";
-                if (get_admin_priv($_SESSION['username']))
-                  echo "<a href='#'>Register</a>";
+                if ($_SESSION['pri']) {
+                  echo "<a href='adminview.php'>Manage bookings</a>";
+                }
                 echo "
                     <a href='logout.php' id='logout'>Log Out</a>
                   </div>

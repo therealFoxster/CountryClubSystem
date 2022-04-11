@@ -28,7 +28,7 @@ if (isset($_POST['submit'])) {
 		$_SESSION['pass']=$_POST['password'];
 		// $_SESSION['pri']=get_admin_priv($username) ;
 		if (get_admin_priv($username) > 0) {
-			$_SESSION['pri']=0;
+			$_SESSION['pri']=get_admin_priv($username);
 		}else{
 			unset($_SESSION['pri']);
 		}
