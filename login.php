@@ -26,6 +26,12 @@ if (isset($_POST['submit'])) {
 	if ($user && $password === $user['PasswordHash']) {
 		$_SESSION['username']=$username;
 		$_SESSION['pass']=$_POST['password'];
+		// $_SESSION['pri']=get_admin_priv($username) ;
+		if (get_admin_priv($username) > 0) {
+			$_SESSION['pri']=0;
+		}else{
+			unset($_SESSION['pri']);
+		}
 		header("Location: index.php");
 		
 		

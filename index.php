@@ -1,4 +1,8 @@
-<?php session_start(); ?>
+<?php session_start();
+
+require 'db/db_interface.php'; 
+   
+?>
 <html>
 
 <head>
@@ -51,7 +55,7 @@
                             .dropdown:hover > a {background-color: #df2935; color: white;}
                         </style>
                         <?php
-                            if (isset($_SESSION['username'])) {
+                            if( isset($_SESSION['pri']) ){
                                 echo "
                                 <li class='dropdown'>
                                     <a id ='username' href='#'>{$_SESSION['username']}</a>
@@ -59,9 +63,23 @@
                                         <a href='profile.php'>Profile</a>
                                         <a href='adminview.php'>Registered game</a>
                                         <a href='logout.php' id='logout'>Log Out</a>
+                                       
                                     </div>
                                 </li>";
-                            } else {
+                            }else if (isset($_SESSION['username'])) {
+                                echo "
+                                <li class='dropdown'>
+                                    <a id ='username' href='#'>{$_SESSION['username']}</a>
+                                    <div class='dropdown-content'>
+                                        <a href='profile.php'>Profile</a>
+                                        
+                                        <a href='logout.php' id='logout'>Log Out</a>
+                                       
+                                    </div>
+                                </li>";
+                            }
+
+                             else {
                                 echo '
                                 <li><a href="login.php">Log In</a></li>
                                 <li><a href="register.php">Sign Up</a></li>';
