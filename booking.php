@@ -144,8 +144,10 @@ if (isset($_SESSION['username'])) {
                 <li class='dropdown'>
                   <a id ='username' href='register.php'>{$_SESSION['username']}</a>
                   <div class='dropdown-content'>
-                    <a href='profile.php'>Profile</a>
-                    <a href='#'>Register</a>
+                    <a href='profile.php'>Profile</a>";
+                  if (get_admin_priv($_SESSION['username']))
+                    echo "<a href='#'>Register</a>";
+                  echo "
                     <a href='logout.php' id='logout'>Log Out</a>
                   </div>
                 </li>";
