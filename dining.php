@@ -421,7 +421,7 @@ if (isset($_SESSION['username'])) {
                 people=people.split(" ")[0];
                 $_POST['time']=time;
                 $_POST['num_of_people']=people;
-                $_POST['date']=year+"-"+month+"-"date;
+                $_POST['date']=year+"-"+month+"-"+date;
                 alert("");
             }
         }

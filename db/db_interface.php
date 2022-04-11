@@ -299,7 +299,7 @@ function get_admin_priv(string $username) {
  * @param  ?string $notes  Any notes related to the booking (nullable).
  * @return void
  */
-function add_restaurant_booking(string $email, string $date, ?string $time, ?int $num_guests, ?string $notes) {
+function add_restaurant_booking(string $email, string $date, ?string $time = null, ?int $num_guests = null, ?string $notes = null) {
     __insert_into_table("RestaurantBooking", [$email, $date, $time, $num_guests, $notes], "CustomerEmail, BookedDate, BookedTime, NumGuests, Notes");
 }
 
@@ -407,8 +407,11 @@ function add_booking(int $facility_id, string $date, int $time_slot_id, string $
     __insert_into_table("Booking", [$facility_id, $date, $time_slot_id, $username], "FacilityId, Date, TimeSlotId, Username");
 }
 
-function get_bookings_for_date(string $date) {
-    return __find_records_in_table("Booking", "Date = '$date'");
+function get_bookings(?string $date = null, ?int $time_slot_id = null) {
+    $condition = "";
+    if ($date) $condition .= "Date = '$date'";
+    if ($time_slot_id) $condition .= "AND TimeSlotId = $time_slot_id";
+    return __find_records_in_table("Booking", "$condition");
 }
 
 /**
@@ -506,6 +509,8 @@ function __find_record_in_table(string $table_name, $condition) {
 
 function __find_records_in_table(string $table_name, $condition = "true") {
     global $db, $this_file;
+
+    if (!$condition) $condition = "true";
 
     try {
         $q = $db->query("SELECT DISTINCT * FROM $table_name WHERE $condition");
