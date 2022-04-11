@@ -146,7 +146,7 @@
                                         </div>
                                     </div>
                                     <div class="image">
-                                        <img src="images/amenities_dining.jpg" alt="gamesdining" class="service-image">
+                                        <img src="images/amenities_dining.jpg" alt="dining" class="service-image">
                                         <div class="middle-text">
                                             <div class="visit-link">Visit Link</div>
                                         </div>
@@ -165,8 +165,7 @@
                                         </div>
                                     </div>
                                     <div class="image">
-                                        <img src="images/amenities_clubhouse.jpg" alt="gamesdining"
-                                            class="service-image">
+                                        <img src="images/amenities_clubhouse.jpg" alt="clubhouse" class="service-image">
                                         <div class="middle-text">
                                             <div class="visit-link">Visit Link</div>
                                         </div>
@@ -185,7 +184,7 @@
                                         </div>
                                     </div>
                                     <div class="image">
-                                        <img src="images/amenities_events.jpg" alt="gamesdining" class="service-image">
+                                        <img src="images/amenities_events.jpg" alt="events" class="service-image">
                                         <div class="middle-text">
                                             <div class="visit-link">Visit Link</div>
                                         </div>
@@ -204,7 +203,7 @@
                                         </div>
                                     </div>
                                     <div class="image">
-                                        <img src="images/amenities_trainer.jpg" alt="gamesdining" class="service-image">
+                                        <img src="images/amenities_trainer.jpg" alt="trainer" class="service-image">
                                         <div class="middle-text">
                                             <div class="visit-link">Visit Link</div>
                                         </div>
@@ -223,8 +222,7 @@
                                         </div>
                                     </div>
                                     <div class="image">
-                                        <img src="images/amenities_practice.jpg" alt="gamesdining"
-                                            class="service-image">
+                                        <img src="images/amenities_practice.jpg" alt="practice" class="service-image">
                                         <div class="middle-text">
                                             <div class="visit-link">Visit Link</div>
                                         </div>
