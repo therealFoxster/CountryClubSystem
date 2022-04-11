@@ -65,7 +65,7 @@ $username = $_SESSION['username']; $user = null;
 <style>
 
 body, html {
-  height: 100%;
+ 
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -95,12 +95,14 @@ text-transform: uppercase;
 
 
 .btn {
+  text-align:center;
   background-color: #04AA6D;
   color: white;
   padding: 16px 20px;
   border: none;
   cursor: pointer;
   width: 100%;
+  font-size: 16px;
 text-transform: uppercase;
   opacity: 0.9;
 }
