@@ -30,12 +30,13 @@ $username = $_SESSION['username']; $user = null;
      }
 
      if(isset($_POST['Save'])&&$_POST['password']==$_POST['cpassword']) {
-      update_customer($_SESSION['username'], $_POST['first name'],
-      $_POST['last name'], $_POST['Email'], $_POST['mobile'],
+      update_customer($_SESSION['username'], $_POST['first name'],$_POST['last name'], $_POST['Email'], $_POST['mobile'],
       $_POST['address'], $_POST['dob'], $_POST['username'],
       md5($_POST['password']));
     }
     // else{die("Error: something is not right.");}
+
+
 ?>
 
 
@@ -64,7 +65,7 @@ $username = $_SESSION['username']; $user = null;
 <style>
 
 body, html {
-  height: 100%;
+ 
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -91,22 +92,6 @@ text-transform: uppercase;
 
 }
 
-/* .container {
-     		width:auto;
-		max-width:390px;
-
-    margin-left: auto;
-  margin-right: auto;
-            
-            position:relative;
-            margin:6% auto;
-            background: white;
-            box-shadow: 0 0 10px #2d545e;
-            padding: 25px 20px;
-            border-radius:20px;
-            overflow: hidden;
-		
-} */
 
 
 .btn {
