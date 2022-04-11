@@ -1,8 +1,8 @@
 <?php
 date_default_timezone_set("America/Vancouver");
-$server_url = "localhost";
+$server_url = "localhost:8889";
 $__username = "root";
-$__password = "";
+$__password = "root";
 $dbname = "CountryClub";
 $setup_script = file_get_contents("db/config/setup.sql");
 $date = date("[M j, o][G:i:s]"); 

@@ -401,6 +401,10 @@ function add_booking(int $facility_id, string $date, int $time_slot_id, string $
     __insert_into_table("Booking", [$facility_id, $date, $time_slot_id, $username], "FacilityId, Date, TimeSlotId, Username");
 }
 
+function get_bookings_for_date(string $date) {
+    return __find_records_in_table("Booking", "Date = '$date'");
+}
+
 /**
  * TODOs
  * 

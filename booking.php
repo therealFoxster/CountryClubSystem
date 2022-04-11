@@ -1,5 +1,31 @@
 <?php require 'db/db_interface.php'; 
 session_start(); 
+
+# Responding to GET request
+if(isset($_GET['date'])){
+  $date = $_GET['date'];
+  
+  $facilities = get_facilities();
+      $facility_opts = "";
+      foreach ($facilities as $facility) {
+        $facility_opts .= "<option value='{$facility['FacilityId']}'>{$facility['FacilityName']}</option>";
+      }
+  echo "$facility_opts\n";
+
+  $time_slots = get_time_slots();
+  $time_slot_opts = "";
+  foreach ($time_slots as $time_slot) {
+    $time_slot_opts .= "<option value='{$time_slot['TimeSlotId']}'> {$time_slot['StartTime']} - {$time_slot['EndTime']}</option>";
+  }
+  echo "$time_slot_opts\n";
+
+  $bookings = get_bookings_for_date($date);
+  foreach ($bookings as $booking) {
+    echo "{$booking['FacilityId']}/{$booking['TimeSlotId']}\n";
+  }
+  return;
+}
+
 if (isset($_SESSION['username'])) {
   if (isset($_POST['facility']) && isset($_POST['date']) && isset($_POST['time'])) {
     test_log($_POST['facility']);
@@ -22,6 +48,7 @@ if (isset($_SESSION['username'])) {
   <link rel='stylesheet' href='style/event_ClubHouse.css'>
   <link rel="stylesheet" type="text/css" href="style1.css">
   <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
  
   <style>
     body, html {
@@ -161,7 +188,7 @@ if (isset($_SESSION['username'])) {
             </select></br>
 
             <label class='input-label' for='checkin' >Date</label></br>
-            <input class='input-field' type='date' id='date' name='date' onchange='CompareDate(event);' required><br>
+            <input class='input-field' type='date' id='date' name='date' onchange='checkAvailability(event);' required><br>
                       
             <label class='input-label' >Time slot</label></br>
             <select id='time' class='input-field'  name='time'  onchange='select()' required >       
@@ -195,7 +222,7 @@ if (isset($_SESSION['username'])) {
   </div> -->
 
   <script>         
-    function CompareDate(e) {    
+    function compareDate(e) {    
       today = new Date();
       var dd = today.getDate();
       var mm = today.getMonth() + 1; // As January is 0.
@@ -215,7 +242,54 @@ if (isset($_SESSION['username'])) {
         alert("Please select valid booking date from today");
         e.target.value ='';
       }
-    }  
+    }
+
+    function checkAvailability(event) {
+      const date = event.target.value;
+      $.ajax({
+        type: "GET",
+        url: "booking.php",
+        data: {date: date},
+        success: (data) => {
+          // Adding all options (will be removed later if needed)
+          document.querySelector("#facility").innerHTML = data.split("\n")[0];
+          document.querySelector("#time").innerHTML = data.split("\n")[1];
+
+          // Storing booked details
+          var bookedFacilityIds = [], bookedTimeSlotIds = [];
+          count = -1; data.split("\n").forEach(element => {
+            if (element && count) {
+              bookedFacilityIds.push(element.split("/")[0]);
+              bookedTimeSlotIds.push(element.split("/")[1]);
+            } count++;
+          });
+          
+          // Removing unneeded facility options
+          facilityOpts = [];
+          Array.from(document.querySelectorAll("#facility option")).forEach(opt => {
+            if (!bookedFacilityIds.includes(opt.value)) {
+              facilityOpts.push(opt);
+            }
+          });
+          document.querySelector("#facility").innerHTML = "";
+          facilityOpts.forEach(opt => {
+            document.querySelector("#facility").insertAdjacentElement('beforeend', opt);
+          });
+
+          // Removing unneeded time slot options
+          timeSlotsOpts = [];
+          Array.from(document.querySelectorAll("#time option")).forEach(opt => {
+            if (!bookedTimeSlotIds.includes(opt.value)) {
+              timeSlotsOpts.push(opt);
+            }
+          });
+          document.querySelector("#time").innerHTML = "";
+          timeSlotsOpts.forEach(opt => {
+            document.querySelector("#time").insertAdjacentElement('beforeend', opt);
+          });
+        }
+      });
+    }
   </script>
 </body>
 </html>
