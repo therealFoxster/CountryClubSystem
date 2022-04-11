@@ -249,8 +249,20 @@ if (isset($_SESSION['username'])) {
     </p>
   </div> -->
 
-    <<<<<<< HEAD <script>
-        function CompareDate(e) {
+  <script>
+    function CompareDate(e) {
+    today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; // As January is 0.
+    var yy = today.getFullYear();
+    var dateformat = e.target.value.split('-');
+    var cin = dateformat[2];
+    var cinmonth = dateformat[1];
+    var cinyear = dateformat[0];
+
+    if (yy == cinyear && mm == cinmonth && dd <= cin) return true; else if (mm < cinmonth) return true; else if (yy
+      < cinyear) return true; else { alert("Please select valid booking date from today"); e.target.value='' ; } }
+      function compareDate(e) {
         today = new Date();
         var dd = today.getDate();
         var mm = today.getMonth() + 1; // As January is 0.
@@ -260,87 +272,71 @@ if (isset($_SESSION['username'])) {
         var cinmonth = dateformat[1];
         var cinyear = dateformat[0];
 
-        if (yy == cinyear && mm == cinmonth && dd <= cin) return true; else if (mm < cinmonth) return true; else if (yy
-            < cinyear) return true; else { alert("Please select valid booking date from today"); e.target.value='' ; } }
-            </script>
-            =======
-            <script>
-            function compareDate(e) {
-                today = new Date();
-                var dd = today.getDate();
-                var mm = today.getMonth() + 1; // As January is 0.
-                var yy = today.getFullYear();
-                var dateformat = e.target.value.split('-');
-                var cin = dateformat[2];
-                var cinmonth = dateformat[1];
-                var cinyear = dateformat[0];
+        if (yy == cinyear && mm == cinmonth && dd <= cin)
+          return true;
+        else if (mm < cinmonth)
+          return true;
+        else if (yy < cinyear)
+          return true;
+        else {
+          alert("Please select valid booking date from today");
+          e.target.value = '';
+        }
+      }
 
-                if (yy == cinyear && mm == cinmonth && dd <= cin)
-                    return true;
-                else if (mm < cinmonth)
-                    return true;
-                else if (yy < cinyear)
-                    return true;
-                else {
-                    alert("Please select valid booking date from today");
-                    e.target.value = '';
-                }
+    function checkAvailability(event) {
+      const date = event.target.value;
+      $.ajax({
+        type: "GET",
+        url: "booking.php",
+        data: {
+            date: date
+        },
+        success: (data) => {
+          // Adding all options (will be removed later if needed)
+          document.querySelector("#facility").innerHTML = data.split("\n")[0];
+          document.querySelector("#time").innerHTML = data.split("\n")[1];
+
+          // Storing booked details
+          var bookedFacilityIds = [],
+              bookedTimeSlotIds = [];
+          count = -1;
+          data.split("\n").forEach(element => {
+            if (element && count) {
+              bookedFacilityIds.push(element.split("/")[0]);
+              bookedTimeSlotIds.push(element.split("/")[1]);
             }
+            count++;
+          });
 
-            function checkAvailability(event) {
-                const date = event.target.value;
-                $.ajax({
-                    type: "GET",
-                    url: "booking.php",
-                    data: {
-                        date: date
-                    },
-                    success: (data) => {
-                        // Adding all options (will be removed later if needed)
-                        document.querySelector("#facility").innerHTML = data.split("\n")[0];
-                        document.querySelector("#time").innerHTML = data.split("\n")[1];
-
-                        // Storing booked details
-                        var bookedFacilityIds = [],
-                            bookedTimeSlotIds = [];
-                        count = -1;
-                        data.split("\n").forEach(element => {
-                            if (element && count) {
-                                bookedFacilityIds.push(element.split("/")[0]);
-                                bookedTimeSlotIds.push(element.split("/")[1]);
-                            }
-                            count++;
-                        });
-
-                        // Removing unneeded facility options
-                        facilityOpts = [];
-                        Array.from(document.querySelectorAll("#facility option")).forEach(opt => {
-                            if (!bookedFacilityIds.includes(opt.value)) {
-                                facilityOpts.push(opt);
-                            }
-                        });
-                        document.querySelector("#facility").innerHTML = "";
-                        facilityOpts.forEach(opt => {
-                            document.querySelector("#facility").insertAdjacentElement('beforeend',
-                                opt);
-                        });
-
-                        // Removing unneeded time slot options
-                        timeSlotsOpts = [];
-                        Array.from(document.querySelectorAll("#time option")).forEach(opt => {
-                            if (!bookedTimeSlotIds.includes(opt.value)) {
-                                timeSlotsOpts.push(opt);
-                            }
-                        });
-                        document.querySelector("#time").innerHTML = "";
-                        timeSlotsOpts.forEach(opt => {
-                            document.querySelector("#time").insertAdjacentElement('beforeend', opt);
-                        });
-                    }
-                });
+          // Removing unneeded facility options
+          facilityOpts = [];
+          Array.from(document.querySelectorAll("#facility option")).forEach(opt => {
+            if (!bookedFacilityIds.includes(opt.value)) {
+              facilityOpts.push(opt);
             }
-            </script>
-            >>>>>>> f8de20d55977e2571b39a1c48124b00bf2a65341
+          });
+          document.querySelector("#facility").innerHTML = "";
+          facilityOpts.forEach(opt => {
+            document.querySelector("#facility").insertAdjacentElement('beforeend',
+                opt);
+          });
+
+          // Removing unneeded time slot options
+          timeSlotsOpts = [];
+          Array.from(document.querySelectorAll("#time option")).forEach(opt => {
+            if (!bookedTimeSlotIds.includes(opt.value)) {
+              timeSlotsOpts.push(opt);
+            }
+          });
+          document.querySelector("#time").innerHTML = "";
+          timeSlotsOpts.forEach(opt => {
+            document.querySelector("#time").insertAdjacentElement('beforeend', opt);
+          });
+        }
+      });
+    }
+  </script>
 </body>
 
 </html>
