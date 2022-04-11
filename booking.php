@@ -170,7 +170,7 @@ if (isset($_SESSION['username'])) {
             </select></br>
 
             <button type='submit' class='btn' onclick='return confirm('Are you sure you want to book this facility?')'>Book</button>
-          </div>
+          </div> 
         </form>
       </div>";
     } else {

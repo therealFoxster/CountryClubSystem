@@ -1,6 +1,6 @@
 <?php
 date_default_timezone_set("America/Vancouver");
-$server_url = "localhost";
+$server_url = "localhost:3307";
 $__username = "root";
 $__password = "";
 $dbname = "CountryClub";

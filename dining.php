@@ -1,4 +1,16 @@
-<?php session_start(); ?>
+<?php require 'db/db_interface.php'; 
+session_start(); 
+if (isset($_SESSION['username'])) {
+    if (isset($_POST['num_of_people']) && isset($_POST['date']) && isset($_POST['time'])) {
+      test_log($_POST['num_of_people']);
+      test_log($_POST['date']);
+      test_log($_POST['time']);
+      test_log($_SESSION['username']);
+      $user=find_customer_with_username($_SESSION['username']);
+      add_restaurant_booking($user['Email'], $_POST['date'], $_POST['time'], $_POST['num_of_people']);
+    }
+  }
+?>
 <html>
 
 <head>
@@ -9,6 +21,8 @@
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.2/chosen.min.css'>
+    <script src="js/snackbar.js"></script>
+
 </head>
 
 <body>
@@ -181,51 +195,55 @@
     <div class=" dining_book ">
         <div class="column ">
             <h1>Make a Reservation</h1>
-            <div class="reservation">
-                <div class="card">
-                    <section class="ftco-section">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="content w-100">
-                                        <div class="calendar-container">
-                                            <div class="calendar">
-                                                <div class="year-header">
-                                                    <span class="left-button fa fa-chevron-left" id="prev"> </span>
-                                                    <span class="year" id="label"></span>
-                                                    <span class="right-button fa fa-chevron-right" id="next"> </span>
+            
+            
+            <div class='reservation'>
+                <div class='card'>
+                <?php 
+            if (isset($_SESSION['username'])) {
+                    echo "<section class='ftco-section'>
+                        <div class='container'>
+                            <div class='row'>
+                                <div class='col-md-12'>
+                                    <div class='content w-100'>
+                                        <div class='calendar-container'>
+                                            <div class='calendar'>
+                                                <div class='year-header'>
+                                                    <span class='left-button fa fa-chevron-left' id='prev'> </span>
+                                                    <span class='year' id='label'></span>
+                                                    <span class='right-button fa fa-chevron-right' id='next'> </span>
                                                 </div>
-                                                <table class="months-table w-100">
+                                                <table class='months-table w-100'>
                                                     <tbody>
-                                                        <tr class="months-row">
-                                                            <td class="month">Jan</td>
-                                                            <td class="month">Feb</td>
-                                                            <td class="month">Mar</td>
-                                                            <td class="month">Apr</td>
-                                                            <td class="month">May</td>
-                                                            <td class="month">Jun</td>
-                                                            <td class="month">Jul</td>
-                                                            <td class="month">Aug</td>
-                                                            <td class="month">Sep</td>
-                                                            <td class="month">Oct</td>
-                                                            <td class="month">Nov</td>
-                                                            <td class="month">Dec</td>
+                                                        <tr class='months-row'>
+                                                            <td class='month'>Jan</td>
+                                                            <td class='month'>Feb</td>
+                                                            <td class='month'>Mar</td>
+                                                            <td class='month'>Apr</td>
+                                                            <td class='month'>May</td>
+                                                            <td class='month'>Jun</td>
+                                                            <td class='month'>Jul</td>
+                                                            <td class='month'>Aug</td>
+                                                            <td class='month'>Sep</td>
+                                                            <td class='month'>Oct</td>
+                                                            <td class='month'>Nov</td>
+                                                            <td class='month'>Dec</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
 
-                                                <table class="days-table w-100">
-                                                    <td class="day">Sun</td>
-                                                    <td class="day">Mon</td>
-                                                    <td class="day">Tue</td>
-                                                    <td class="day">Wed</td>
-                                                    <td class="day">Thu</td>
-                                                    <td class="day">Fri</td>
-                                                    <td class="day">Sat</td>
+                                                <table class='days-table w-100'>
+                                                    <td class='day'>Sun</td>
+                                                    <td class='day'>Mon</td>
+                                                    <td class='day'>Tue</td>
+                                                    <td class='day'>Wed</td>
+                                                    <td class='day'>Thu</td>
+                                                    <td class='day'>Fri</td>
+                                                    <td class='day'>Sat</td>
                                                 </table>
-                                                <div class="frame">
-                                                    <table class="dates-table w-100">
-                                                        <tbody class="tbody">
+                                                <div class='frame'>
+                                                    <table class='dates-table w-100'>
+                                                        <tbody class='tbody'>
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -237,9 +255,9 @@
                         </div>
                     </section>
                 </div>
-                <div class="card">
-                    <div class="chosen-wrapper" data-js="custom-scroll">
-                        <select class="chosen-select" data-placeholder="Select Time">
+                <div class='card'>
+                    <div class='chosen-wrapper' data-js='custom-scroll'>
+                        <select class='chosen-select' data-placeholder='Select Time'>
                             <option></option>
                             <option>7:00 AM</option>
                             <option>7:30 AM</option>
@@ -274,8 +292,8 @@
                             <option>10:00 PM </option>
                         </select>
                     </div>
-                    <div class="chosen-wrapper chosen-wrapper--style2" data-js="custom-scroll">
-                        <select class="chosen-select" data-placeholder="Select People">
+                    <div class='chosen-wrapper chosen-wrapper--style2' data-js='custom-scroll'>
+                        <select class='chosen-select' data-placeholder='Select People'>
                             <option></option>
                             <option>1 Person</option>
                             <option>2 People</option>
@@ -289,10 +307,21 @@
                             <option>10 People</option>
                         </select>
                     </div>
-                    <button onclick="snackBar()">Reserve</button>
-                    <div id="snackbar">Your seat is reserved.</div>
-                </div>
-            </div>
+                    <form method='post' action='dining.php'>
+                        <button onclick='reserve()'>Reserve</button>
+                    </form>
+                    <div id='snackbar'>Your seat is reserved.</div>
+                        ";
+        } else {
+            echo "
+            <div class='container' style='height: 220px;'>
+                <center><h2>Become a member to book</h2></center>  </br>
+                <a href='register.php'><button class='btn'>Sign Up</button><br><br></a>
+                <a href='login.php'><button class='btn'>Log In</button></a>
+            </div>";
+        }
+        ?></div>
+        </div>
         </div>
         <div class="column ">
             <img src="images/dining_book.jpg " alt="Book">
@@ -306,7 +335,7 @@
             <h1>Covid Precautions</h1>
             <img src="images/health_icon.png" alt="Health" style="margin-top:50px; width: 10%;" />
             <p>
-                During this COVID-19 pandemic times, the priority of our guests and college is #1. People dining in our
+                During this COVID-19 pandemic times, the priority of our guests and members is #1. People dining in our
                 place are required to keep their proof of vaccination with them. The proof/masks are not mandatory but
                 encouraged to stop any spread of the virus at
                 our premises. We have taken steps to reduce the risk of COVID-19 transmission, but we ask for each and
@@ -329,12 +358,59 @@
             &copy; Country Club
         </p>
     </div>
-
+    <script>
+        function reserve(){
+            alert("");
+            var time = document.querySelector(".chosen-wrapper div a.chosen-single span").innerHTML;
+            var people=document.querySelector(".chosen-wrapper.chosen-wrapper--style2 div a.chosen-single span").innerHTML;
+            if(time=="Select Time"){
+                document.querySelector("#snackbar").innerHTML="Please select time";
+                alert("");
+            }else if(people=="Select People"){
+                document.querySelector("#snackbar").innerHTML="Please select number of people";
+                alert("");
+            }else{
+                var year=document.querySelector("span.year").innerHTML;
+                var month=document.querySelector("td.month.active-month").innerHTML;
+                var date=document.querySelector("td.table-date.active-date").innerHTML;
+                if(month=="JAN"){
+                    month=01;
+                }else if(month=="FEB"){
+                    month=02;
+                }else if(month=="MAR"){
+                    month=03;
+                }else if(month=="APR"){
+                    month=04;
+                }else if(month=="MAY"){
+                    month=05;
+                }else if(month=="JUN"){
+                    month=06;
+                }else if(month=="JUL"){
+                    month=07;
+                }else if(month=="AUG"){
+                    month=08;
+                }else if(month=="SEP"){
+                    month=09;
+                }else if(month=="OCT"){
+                    month=10;
+                }else if(month=="NOV"){
+                    month=11;
+                }else if(month=="DEC"){
+                    month=12;
+                }
+                people=people.split(" ")[0];
+                $_POST['time']=time;
+                $_POST['num_of_people']=people;
+                $_POST['date']=year+"-"+month+"-"date;
+                alert("");
+            }
+        }
+    </script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
     <script src="js/selectionbox_script.js"></script>
     <script src="js/jquery.min.js "></script>
     <script src="js/main.js "></script>
-    <script src="js/snackbar.js"></script>
+    
 
 </body>
 
