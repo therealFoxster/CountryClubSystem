@@ -279,6 +279,12 @@ function remove_user(string $username) {
     __delete_from_table("User", "Username = '$username'");
 }
 
+function get_admin_priv(string $username) {
+    if ($user = find_user($username)) 
+        return $user['AdminPrivilege'];
+    else return null;
+}
+
 ######################
 ##### Restaurant #####
 ######################
