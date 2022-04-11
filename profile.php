@@ -65,7 +65,7 @@ $username = $_SESSION['username']; $user = null;
 <style>
 
 body, html {
- 
+  height: 100%;
   font-family: Arial, Helvetica, sans-serif;
 }
 
