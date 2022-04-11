@@ -1,4 +1,8 @@
-<?php session_start(); ?>
+<?php session_start();
+
+require 'db/db_interface.php'; 
+   
+?>
 <html>
 
 <head>
@@ -7,61 +11,95 @@
     <link rel="shortcut icon" type="image/x-icon" href="images/country_club_icon.png" />
     <link rel='stylesheet' type="text/css" href='./css/style.css'>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/templatemo-style.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 </head>
 
 <body>
+
     <div id='navbar' class='home-body-nav'>
         <header>
-        <section>
+            <section>
                 <a href="index.php" id="logo" target="_self">Country Club</a>
                 <nav>
                     <ul>
                         <li><a href="index.php">Home</a></li>
                         <li><a href="aboutus.php">About Us</a></li>
+                        <li><a href="games.php">Games</a></li>
                         <li><a href="amenities.php">Amenities</a></li>
                         <li><a href="gallery.php">Gallery</a></li>
                         <li><a href="event.php">Events</a></li>
                         <li><a href="contact.php">Contact</a></li>
-                        
-                        <style> /* Username hover dropdown */
-                            .dropdown {position: relative; display: inline-block;}
-                            .dropdown a {color: #df2935;}
 
-                            .dropdown-content {
-                                display: none;
-                                position: absolute;
-                                background-color: #f1f1f1;
-                                min-width: 160px;
-                                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-                                z-index: 1;
-                            }
-                            
-                            .dropdown-content a {
-                                color: black;
-                                padding: 12px 16px;
-                                text-decoration: none;
-                                display: block;
-                            }
-                            
-                            .dropdown-content a:hover {background-color: #bbb;}
-                            .dropdown-content #logout:hover {background-color: red;}
-                            .dropdown:hover .dropdown-content {display: block;}
-                            .dropdown:hover > a {background-color: #df2935; color: white;}
+                        <style>
+                        /* Username hover dropdown */
+                        .dropdown {
+                            position: relative;
+                            display: inline-block;
+                        }
+
+                        .dropdown a {
+                            color: #df2935;
+                        }
+
+                        .dropdown-content {
+                            display: none;
+                            position: absolute;
+                            background-color: #f1f1f1;
+                            min-width: 160px;
+                            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                            z-index: 1;
+                        }
+
+                        .dropdown-content a {
+                            color: black;
+                            padding: 12px 16px;
+                            text-decoration: none;
+                            display: block;
+                        }
+
+                        .dropdown-content a:hover {
+                            background-color: #bbb;
+                        }
+
+                        .dropdown-content #logout:hover {
+                            background-color: red;
+                        }
+
+                        .dropdown:hover .dropdown-content {
+                            display: block;
+                        }
+
+                        .dropdown:hover>a {
+                            background-color: #df2935;
+                            color: white;
+                        }
                         </style>
                         <?php
-                            if (isset($_SESSION['username'])) {
+                            if( isset($_SESSION['pri']) ){
                                 echo "
                                 <li class='dropdown'>
                                     <a id ='username' href='#'>{$_SESSION['username']}</a>
                                     <div class='dropdown-content'>
                                         <a href='profile.php'>Profile</a>
-                                        <a href='#'>Register</a>
+                                        <a href='adminview.php'>Registered game</a>
                                         <a href='logout.php' id='logout'>Log Out</a>
+                                       
                                     </div>
                                 </li>";
-                            } else {
+                            }else if (isset($_SESSION['username'])) {
+                                echo "
+                                <li class='dropdown'>
+                                    <a id ='username' href='#'>{$_SESSION['username']}</a>
+                                    <div class='dropdown-content'>
+                                        <a href='profile.php'>Profile</a>
+                                        
+                                        <a href='logout.php' id='logout'>Log Out</a>
+                                       
+                                    </div>
+                                </li>";
+                            }
+
+                             else {
                                 echo '
                                 <li><a href="login.php">Log In</a></li>
                                 <li><a href="register.php">Sign Up</a></li>';
@@ -92,93 +130,123 @@
 
     <div class='services'>
 
-        <h1>SERVICES</h1>
+        <h1>OUR SERVICES</h1>
 
         <div class="service-portfolio-home" id="portfolio">
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-sm-6">
                         <div class="service-portfolio-item">
-                            <div class="thumb">
-                                <div class="hover-effect">
-                                    <div class="hover-content">
-                                        <h1>GAMES</h1>
+                            <a href="./games.php">
+                                <div class="thumb">
+                                    <div class="hover-effect">
+                                        <div class="hover-content">
+                                            <h1>GAMES</h1>
+                                        </div>
+                                    </div>
+                                    <div class="image">
+                                        <img src="images/amenities_games.jpg" alt="games" class="service-image">
+                                        <div class="middle-text">
+                                            <div class="visit-link">Visit Link</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="image">
-                                    <img src="images/amenities_games.jpg">
-                                </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-6">
                         <div class="service-portfolio-item">
-                            <div class="thumb">
-                                <div class="hover-effect">
-                                    <div class="hover-content">
-                                        <h1>DINING</h1>
+                            <a href="./dining.php">
+                                <div class="thumb">
+                                    <div class="hover-effect">
+                                        <div class="hover-content">
+                                            <h1>DINING</h1>
+                                        </div>
+                                    </div>
+                                    <div class="image">
+                                        <img src="images/amenities_dining.jpg" alt="dining" class="service-image">
+                                        <div class="middle-text">
+                                            <div class="visit-link">Visit Link</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="image">
-                                    <img src="images/amenities_dining.jpg">
-                                </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-6">
                         <div class="service-portfolio-item">
-                            <div class="thumb">
-                                <div class="hover-effect">
-                                    <div class="hover-content">
-                                        <h1>CLUBHOUSE</h1>
+                            <a href="./clubhouse.php">
+                                <div class="thumb">
+                                    <div class="hover-effect">
+                                        <div class="hover-content">
+                                            <h1>CLUBHOUSE</h1>
+                                        </div>
+                                    </div>
+                                    <div class="image">
+                                        <img src="images/amenities_clubhouse.jpg" alt="clubhouse" class="service-image">
+                                        <div class="middle-text">
+                                            <div class="visit-link">Visit Link</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="image">
-                                    <img src="images/amenities_clubhouse.jpg">
-                                </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-6">
                         <div class="service-portfolio-item">
-                            <div class="thumb">
-                                <div class="hover-effect">
-                                    <div class="hover-content">
-                                        <h1>EVENTS</h1>
+                            <a href="./event.php">
+                                <div class="thumb">
+                                    <div class="hover-effect">
+                                        <div class="hover-content">
+                                            <h1>EVENTS</h1>
+                                        </div>
+                                    </div>
+                                    <div class="image">
+                                        <img src="images/amenities_events.jpg" alt="events" class="service-image">
+                                        <div class="middle-text">
+                                            <div class="visit-link">Visit Link</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="image">
-                                    <img src="images/amenities_events.jpg">
-                                </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-6">
                         <div class="service-portfolio-item">
-                            <div class="thumb">
-                                <div class="hover-effect">
-                                    <div class="hover-content">
-                                        <h1>COMPETITION</h1>
+                            <a href="./trainer.php">
+                                <div class="thumb">
+                                    <div class="hover-effect">
+                                        <div class="hover-content">
+                                            <h1>TRAINER</h1>
+                                        </div>
+                                    </div>
+                                    <div class="image">
+                                        <img src="images/amenities_trainer.jpg" alt="trainer" class="service-image">
+                                        <div class="middle-text">
+                                            <div class="visit-link">Visit Link</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="image">
-                                    <img src="images/amenities_competition.jpg">
-                                </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-6">
                         <div class="service-portfolio-item">
-                            <div class="thumb">
-                                <div class="hover-effect">
-                                    <div class="hover-content">
-                                        <h1>PRACTICE</h1>
+                            <a href="./practice.php">
+                                <div class="thumb">
+                                    <div class="hover-effect">
+                                        <div class="hover-content">
+                                            <h1>PRACTICE</h1>
+                                        </div>
+                                    </div>
+                                    <div class="image">
+                                        <img src="images/amenities_practice.jpg" alt="practice" class="service-image">
+                                        <div class="middle-text">
+                                            <div class="visit-link">Visit Link</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="image">
-                                    <img src="images/amenities_practice.jpg">
-                                </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>

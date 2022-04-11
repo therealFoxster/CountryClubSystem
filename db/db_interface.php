@@ -279,6 +279,12 @@ function remove_user(string $username) {
     __delete_from_table("User", "Username = '$username'");
 }
 
+function get_admin_priv(string $username) {
+    if ($user = find_user($username)) 
+        return $user['AdminPrivilege'];
+    else return null;
+}
+
 ######################
 ##### Restaurant #####
 ######################
@@ -399,6 +405,10 @@ function get_time_slots() {
 
 function add_booking(int $facility_id, string $date, int $time_slot_id, string $username) {
     __insert_into_table("Booking", [$facility_id, $date, $time_slot_id, $username], "FacilityId, Date, TimeSlotId, Username");
+}
+
+function get_bookings_for_date(string $date) {
+    return __find_records_in_table("Booking", "Date = '$date'");
 }
 
 /**
