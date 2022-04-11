@@ -1,4 +1,14 @@
-<?php session_start(); ?>
+<?php require 'db/db_interface.php'; 
+session_start(); 
+
+if(isset($_GET['booking_id'])) {
+  remove_booking($_GET['booking_id']);
+  echo $_GET['booking_id'];
+  return;
+}
+
+
+?>
 <html>
 
 <head>
@@ -10,6 +20,7 @@
     <link rel="stylesheet" href="css/templatemo-style.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="./css/admin register view.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -99,31 +110,73 @@
 
       
         <div class="container">
-		<form action="" method="POST" class="login-email">
-			    <p class="login-text" style="font-size: 2rem; font-weight: 800;">GAME REGISTERED    </p>
+		<form action="" method="GET" class="login-email">
+			    <p class="login-text" style="font-size: 2rem; font-weight: 800;">All bookings</p>
                 <table style="width:100%">
 
 
 
 
   <tr>
-    <th>NAME</th>
-    <th>DATE</th>
-    <th>SLOT</th>
-    <th>CONFIRM</th>
+    <th>Booked by</th>
+    <th>Username</th>
+    <th>Facility</th>
+    <th>Date</th>
+    <th>Time slot</th>
+    <th>Actions</th>
       </tr>
 
       
-      <?php
+  <?php
 
-  '<tr>
-    <td>SANDEEP</td>
-    <td>02-02-2022</td>
-    <td>9:00-3-00</td>
-    <td><button name="Save" class="button">Save</button></td>
-     
-  </tr>'
+  $bookings = get_bookings();
+  foreach ($bookings as $booking) {
+    $time_slot = get_time_slot($booking['TimeSlotId']);
+    $facility = get_facility($booking['FacilityId']);
+    
+    $username = $booking['Username'];$user = null;
+    switch (find_user($username)["AdminPrivilege"]) {
+        case 0: // Customer
+            $user = find_customer_with_username($username);
+            break;
+        case 1: // Employee
+            $user = find_employee_with_username($user);
+            break;
+        case 2: // Manager
+            $user = find_manager_with_username($username);
+            break;
+    }
+
+    $user["FName"]; // User's first name
+
+
+    echo "
+    <tr>
+      <td>{$user['FName']} {$user['LName']}</td>
+      <td>{$username}</td>
+      <td>{$facility['FacilityName']}</td>
+      <td>{$booking['Date']}</td>
+      <td>{$time_slot[1]} - {$time_slot[2]}</td>
+      <td><button onclick='get($booking[0])' formmethod='GET' class='button'>Remove</button></td>
+    </tr>
+    ";
+  }
   ?>
+
+  <script>
+    function get(id) {
+      $.ajax({
+        type: "GET",
+        url: "adminview.php",
+        data: {
+          booking_id: id,
+        },
+        success: (data) => {
+          // alert(data);
+        }
+      });
+    }
+  </script>
 </table>
 
 

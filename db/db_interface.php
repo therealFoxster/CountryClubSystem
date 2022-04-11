@@ -391,12 +391,19 @@ function get_facilities() {
     return __find_records_in_table("Facility");
 }
 
+function get_facility(int $id) {
+    return __find_record_in_table("Facility", "FacilityId = $id");
+}
+
 ####################
 ##### TimeSlot #####
 ####################
 
 function get_time_slots() {
     return __find_records_in_table("TimeSlot");
+}
+function get_time_slot(int $id) {
+    return __find_record_in_table("TimeSlot", "TimeSlotId = $id");
 }
 
 ###################
@@ -412,6 +419,10 @@ function get_bookings(?string $date = null, ?int $time_slot_id = null) {
     if ($date) $condition .= "Date = '$date'";
     if ($time_slot_id) $condition .= "AND TimeSlotId = $time_slot_id";
     return __find_records_in_table("Booking", "$condition");
+}
+
+function remove_booking(int $id) {
+    __delete_from_table("Booking", "BookingId = $id");
 }
 
 /**
