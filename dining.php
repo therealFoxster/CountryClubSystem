@@ -1,15 +1,22 @@
 <?php require 'db/db_interface.php'; 
 session_start(); 
+
 if (isset($_SESSION['username'])) {
-    if (isset($_POST['num_of_people']) && isset($_POST['date']) && isset($_POST['time'])) {
-      test_log($_POST['num_of_people']);
-      test_log($_POST['date']);
-      test_log($_POST['time']);
-      test_log($_SESSION['username']);
-      $user=find_customer_with_username($_SESSION['username']);
-      add_restaurant_booking($user['Email'], $_POST['date'], $_POST['time'], $_POST['num_of_people']);
+    if (isset($_GET['num_of_people']) && isset($_GET['date']) && isset($_GET['time'])) {
+        // echo $_GET['num_of_people'] . "\n";
+        // echo $_GET['date'] . "\n";
+        // echo $_GET['time'] . "\n";
+        $num_people = $_GET['num_of_people'];
+        $date = $_GET['date'];
+        $time = $_GET['time'];
+        
+        $user = find_customer_with_username($_SESSION['username']);
+        
+        add_restaurant_booking($user['Email'], $date, $time, $num_people);
+
+        return;
     }
-  }
+}
 ?>
 <html>
 
@@ -22,6 +29,7 @@ if (isset($_SESSION['username'])) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.2/chosen.min.css'>
     <script src="js/snackbar.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 </head>
 
@@ -218,11 +226,14 @@ if (isset($_SESSION['username'])) {
     </div>
     <div class=" dining_book ">
         <div class="column ">
-            <h1>Make a Reservation</h1>
-            
-            
+            <br><h1>Make a Reservation</h1>
             <div class='reservation'>
-                <div class='card'>
+                <?php 
+                if (isset($_SESSION['username']))
+                    echo "<div class='card'>";
+                else echo "<div class='card' style='box-shadow: none;'>"
+                ?>
+                
                 <?php 
             if (isset($_SESSION['username'])) {
                     echo "<section class='ftco-section'>
@@ -331,17 +342,17 @@ if (isset($_SESSION['username'])) {
                             <option>10 People</option>
                         </select>
                     </div>
-                    <form method='post' action='dining.php'>
+                    
                         <button onclick='reserve()'>Reserve</button>
-                    </form>
+                    
                     <div id='snackbar'>Your seat is reserved.</div>
                         ";
         } else {
             echo "
             <div class='container' style='height: 220px;'>
                 <center><h2>Become a member to book</h2></center>  </br>
-                <a href='register.php'><button class='btn'>Sign Up</button><br><br></a>
-                <a href='login.php'><button class='btn'>Log In</button></a>
+                <a href='register.php'><button>Sign Up</button><br><br></a>
+                <a href='login.php'><button>Log In</button></a>
             </div>";
         }
         ?></div>
@@ -384,49 +395,64 @@ if (isset($_SESSION['username'])) {
     </div>
     <script>
         function reserve(){
-            alert("");
+            // alert("");
             var time = document.querySelector(".chosen-wrapper div a.chosen-single span").innerHTML;
             var people=document.querySelector(".chosen-wrapper.chosen-wrapper--style2 div a.chosen-single span").innerHTML;
             if(time=="Select Time"){
                 document.querySelector("#snackbar").innerHTML="Please select time";
-                alert("");
+                // alert("");
             }else if(people=="Select People"){
                 document.querySelector("#snackbar").innerHTML="Please select number of people";
-                alert("");
+                // alert("");
             }else{
                 var year=document.querySelector("span.year").innerHTML;
-                var month=document.querySelector("td.month.active-month").innerHTML;
+                var month=document.querySelector("td.month.active-month").innerHTML.toUpperCase();
                 var date=document.querySelector("td.table-date.active-date").innerHTML;
                 if(month=="JAN"){
-                    month=01;
+                    month='01';
                 }else if(month=="FEB"){
-                    month=02;
+                    month='02';
                 }else if(month=="MAR"){
-                    month=03;
+                    month='03';
                 }else if(month=="APR"){
-                    month=04;
+                    month='04';
                 }else if(month=="MAY"){
-                    month=05;
+                    month='05';
                 }else if(month=="JUN"){
-                    month=06;
+                    month='06';
                 }else if(month=="JUL"){
-                    month=07;
+                    month='07';
                 }else if(month=="AUG"){
-                    month=08;
+                    month='08';
                 }else if(month=="SEP"){
-                    month=09;
+                    month='09';
                 }else if(month=="OCT"){
-                    month=10;
+                    month='10';
                 }else if(month=="NOV"){
-                    month=11;
+                    month='11';
                 }else if(month=="DEC"){
-                    month=12;
+                    month='12';
                 }
                 people=people.split(" ")[0];
-                $_POST['time']=time;
-                $_POST['num_of_people']=people;
-                $_POST['date']=year+"-"+month+"-"+date;
-                alert("");
+                // $_POST['time']=time;
+                // $_POST['num_of_people']=people;
+                // $_POST['date']=year+"-"+month+"-"+date;
+                
+                date = year + "-" + month + "-" + date;
+                formattedTime = (new Date(date + " " + time)).toLocaleTimeString('en-GB').slice(0, -3);
+
+                $.ajax({
+                    type: "GET",
+                    url: "dining.php",
+                    data: {
+                        time: formattedTime,
+                        num_of_people: parseInt(people),
+                        date: date
+                    },
+                    success: (response) => {
+                        // alert(response);
+                    }
+                });
             }
         }
     </script>

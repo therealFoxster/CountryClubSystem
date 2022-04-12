@@ -7,6 +7,9 @@ if(isset($_GET['booking_id'])) {
   return;
 }
 
+if (!isset($_SESSION['pri']) || $_SESSION['pri'] = 0) {
+  header("Location: index.php");
+}
 
 ?>
 <html>
