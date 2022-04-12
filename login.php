@@ -4,8 +4,6 @@ require 'db/db_interface.php';
 session_start();
 error_reporting(0);
 
-$last_page = $_SERVER['HTTP_REFERER'];
-
 // if (isset($_SESSION['username'])) {
 // 	header("Location: welcome.php");
 // }
@@ -156,7 +154,9 @@ if (isset($_POST['submit'])) {
     <div class="login-page">
         <div class="container">
             <form action="" method="POST" class="login-email">
-                <?php $_SESSION['last'] = $_SERVER['HTTP_REFERER']?>
+                <?php 
+                    if (!$__err) $_SESSION['last'] = $_SERVER['HTTP_REFERER']
+                ?>
                 <p class="login-text" style="font-size: 2rem; font-weight: 800;">Log In</p>
                 <div class="input-group">
                     <input type="text" placeholder="Username or Email" name="username"
