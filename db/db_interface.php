@@ -433,7 +433,7 @@ function remove_booking(int $id) {
  */
 
 function update_membership(string $username, int $membership_id) {
-    __update_table("Customer", "Username = '$username", "MembershipId", $membership_id);
+    __update_table("Customer", "Username = '$username'", "MembershipId", $membership_id);
 }
 
  
