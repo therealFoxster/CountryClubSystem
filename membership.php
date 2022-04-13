@@ -172,6 +172,7 @@ if (isset($_POST['submit'])) {
                     <div class="input-group">
                         <button name="submit" class="btn">Continue</button>
                     </div>
+                </div>
             </form>
         </div>
     </div>
