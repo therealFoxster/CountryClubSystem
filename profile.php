@@ -25,6 +25,17 @@ $username = $_SESSION['username']; $user = null;
     $_SESSION['address']=$user["Address"];
     $_SESSION['datejoined']=$user["DateJoined"];
     $_SESSION['membershipid']=$user["MembershipId"];
+    switch ($_SESSION['membershipid']) {
+        case 1: // Silver
+            $membership = "Silver";
+            break;
+        case 2: // Gold
+            $membership = "Gold";
+            break;
+        case 3: // Platinum
+            $membership = "Platinum";
+            break;
+    }
     $_SESSION['membersince']=$user["MemberSince"];
     $_SESSION['usename']=$user["Username"];
      }
@@ -131,65 +142,65 @@ $username = $_SESSION['username']; $user = null;
 
 <body>
     <div id='navbar' class='home-body-nav'>
-    <header>
-      <section>
-        <a href="index.php" id="logo" target="_self">Country Club</a>
-          <nav>
-            <ul>
-              <li><a href="index.php">Home</a></li>
-              <li><a href="aboutus.php">About Us</a></li>
-              <li><a href="games.php">Games</a></li>
-              <li><a href="amenities.php">Amenities</a></li>
-              <li><a href="gallery.php">Gallery</a></li>
-              <li><a href="event.php">Events</a></li>
-              <li><a href="contact.php">Contact</a></li>
+        <header>
+            <section>
+                <a href="index.php" id="logo" target="_self">Country Club</a>
+                <nav>
+                    <ul>
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="aboutus.php">About Us</a></li>
+                        <li><a href="games.php">Games</a></li>
+                        <li><a href="amenities.php">Amenities</a></li>
+                        <li><a href="gallery.php">Gallery</a></li>
+                        <li><a href="event.php">Events</a></li>
+                        <li><a href="contact.php">Contact</a></li>
 
-              <style>
-              /* Username hover dropdown */
-              .dropdown {
-                position: relative;
-                display: inline-block;
-              }
+                        <style>
+                        /* Username hover dropdown */
+                        .dropdown {
+                            position: relative;
+                            display: inline-block;
+                        }
 
-              .dropdown a {
-                color: #df2935;
-              }
+                        .dropdown a {
+                            color: #df2935;
+                        }
 
-              .dropdown-content {
-                display: none;
-                position: absolute;
-                background-color: #f1f1f1;
-                min-width: 160px;
-                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-                z-index: 1;
-              }
+                        .dropdown-content {
+                            display: none;
+                            position: absolute;
+                            background-color: #f1f1f1;
+                            min-width: 160px;
+                            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                            z-index: 1;
+                        }
 
-              .dropdown-content a {
-                color: black;
-                padding: 12px 16px;
-                text-decoration: none;
-                display: block;
-              }
+                        .dropdown-content a {
+                            color: black;
+                            padding: 12px 16px;
+                            text-decoration: none;
+                            display: block;
+                        }
 
-              .dropdown-content a:hover {
-                background-color: #bbb;
-              }
+                        .dropdown-content a:hover {
+                            background-color: #bbb;
+                        }
 
-              .dropdown-content #logout:hover {
-                background-color: red;
-              }
+                        .dropdown-content #logout:hover {
+                            background-color: red;
+                        }
 
-              .dropdown:hover .dropdown-content {
-                display: block;
-              }
+                        .dropdown:hover .dropdown-content {
+                            display: block;
+                        }
 
-              .dropdown:hover>a {
-                background-color: #df2935;
-                color: white;
-              }
-              </style>
-              
-              <?php
+                        .dropdown:hover>a {
+                            background-color: #df2935;
+                            color: white;
+                        }
+                        </style>
+
+                        <?php
               if (isset($_SESSION['username'])) {
                 echo "
                 <li class='dropdown'>
@@ -209,10 +220,10 @@ $username = $_SESSION['username']; $user = null;
                 <li><a href="register.php">Sign Up</a></li>';
               }
               ?>
-            </ul>
-          </nav>
-      </section>
-    </header>
+                    </ul>
+                </nav>
+            </section>
+        </header>
 
     </div>
 
@@ -246,8 +257,10 @@ $username = $_SESSION['username']; $user = null;
                 <input type="password" placeholder="Password" name="password" value="">
             </div>
             <div class="input-group">
-                <input type="password" placeholder="Confirm password" name="cpassword"
-                    value="">
+                <input type="password" placeholder="Confirm password" name="cpassword" value="">
+            </div>
+            <div class="input-group">
+                <input type="text" placeholder="Membership" name="membershipid" value="<?php echo $membership; ?>">
             </div>
             <div class="input-group">
                 <button name="Save" class="btn">Save</button>
