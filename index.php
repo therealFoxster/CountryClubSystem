@@ -83,8 +83,11 @@ require 'db/db_interface.php';
                   <div class='dropdown-content'>
                     <a href='profile.php'>Profile</a>";
                 if ($_SESSION['pri']) {
-                  echo "<a href='adminview.php'>Manage bookings</a>";
+                  echo "<a href='adminview.php'>Manage bookings</a>
+                  <a href='membership.php'>Membership</a>";
                 }
+
+                
                 echo "
                     <a href='logout.php' id='logout'>Log Out</a>
                   </div>
