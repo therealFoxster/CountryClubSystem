@@ -395,16 +395,16 @@ if (isset($_SESSION['username'])) {
     </div>
     <script>
         function reserve(){
-            // alert("");
             var time = document.querySelector(".chosen-wrapper div a.chosen-single span").innerHTML;
             var people=document.querySelector(".chosen-wrapper.chosen-wrapper--style2 div a.chosen-single span").innerHTML;
             if(time=="Select Time"){
                 document.querySelector("#snackbar").innerHTML="Please select time";
-                // alert("");
+                snackBar();
             }else if(people=="Select People"){
                 document.querySelector("#snackbar").innerHTML="Please select number of people";
-                // alert("");
+                snackBar();
             }else{
+                snackBar();
                 var year=document.querySelector("span.year").innerHTML;
                 var month=document.querySelector("td.month.active-month").innerHTML.toUpperCase();
                 var date=document.querySelector("td.table-date.active-date").innerHTML;
