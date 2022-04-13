@@ -425,11 +425,16 @@ function remove_booking(int $id) {
     __delete_from_table("Booking", "BookingId = $id");
 }
 
+
 /**
  * TODOs
  * 
  * membership functions
  */
+
+function update_membership(string $username, int $membership_id) {
+    __update_table("Customer", "Username = '$username", "MembershipId", $membership_id);
+}
 
  
 
